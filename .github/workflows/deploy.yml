@@ -31,3 +31,4 @@ jobs:
         run: npx wrangler pages deploy dist --project-name=rains-digital-space --branch=main
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ea8f0c6610f6c39b119f35fdbbd5b5ad
