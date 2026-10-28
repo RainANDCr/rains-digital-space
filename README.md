@@ -4,7 +4,7 @@ Rain 的个人博客与项目作品集，用来记录计算机科学、编程与
 
 **[访问网站](https://rains-digital-space.pages.dev)** · **[阅读博客](https://rains-digital-space.pages.dev/blog)** · **[浏览项目](https://rains-digital-space.pages.dev/projects)** · **[GitHub 源码](https://github.com/RainANDCr/rains-digital-space)**
 
-另一个部署地址：[Cloudflare Workers](https://rains-digital-space.1785114661.workers.dev)。Pages 通过手动部署更新，Workers 通过 GitHub 的 main 分支推送自动更新，两者需要分别确认版本。部分网络可能无法访问 Cloudflare 默认域名。
+另一个部署地址：[Cloudflare Workers](https://rains-digital-space.1785114661.workers.dev)。Pages 通过手动部署更新，Workers 配有 Git 集成，推送后应检查是否实际触发构建；必要时手动补发。两者需要分别确认版本。部分网络可能无法访问 Cloudflare 默认域名。
 
 ## 博客介绍
 
@@ -144,9 +144,9 @@ git push origin main
 
 `handoff.md` 是本地运维交接资料，不属于网站内容；不要使用 `git add .` 将它无意公开。`node_modules`、`dist`、本地缓存和 `.env` 已由 `.gitignore` 排除。不要提交任何认证令牌。
 
-### Cloudflare Workers：推送自动更新
+### Cloudflare Workers：Git 集成与手动补发
 
-本仓库已连接 Workers Builds。推送到 `main` 后由 Cloudflare 执行构建与部署：
+本仓库已配置 Workers Builds，预期在推送到 `main` 后由 Cloudflare 执行构建与部署：
 
 - 构建命令：`npm run build`
 - 部署命令：`npx wrangler deploy`
@@ -155,6 +155,8 @@ git push origin main
 - 地址：[rains-digital-space.1785114661.workers.dev](https://rains-digital-space.1785114661.workers.dev)
 
 保留 `assets.not_found_handling: "single-page-application"`，确保博客和项目子路径可直接访问与刷新。部署完成后，在 Cloudflare 的构建和部署记录中核对提交 SHA；不要只凭本地网络超时判断网站故障。
+
+如果推送后没有对应的新部署记录，可在确认本地构建成功后运行 `npx wrangler deploy` 手动补发。本次 2026-10-28 更新已通过 CLI 同步到 Workers；自动构建触发尚未确认，请勿将“GitHub 推送成功”等同于“网站部署成功”。
 
 ### Cloudflare Pages：手动同步网站地址
 
