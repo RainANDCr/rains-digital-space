@@ -1,6 +1,21 @@
 # Rain's Digital Space
 
-JavaScript + React + Vite 个人网站。包含响应式首页、About、技能筛选、项目分类、静态 Markdown 博客、组合搜索、深浅主题和中英文界面。没有服务器、数据库或管理后台。
+Rain 的个人博客与项目作品集，用来记录计算机科学、编程与数学学习，也分享城市观察、生活思考和公开项目。
+
+**[访问网站](https://rains-digital-space.pages.dev)** · **[阅读博客](https://rains-digital-space.pages.dev/blog)** · **[浏览项目](https://rains-digital-space.pages.dev/projects)** · **[GitHub 源码](https://github.com/RainANDCr/rains-digital-space)**
+
+另一个部署地址：[Cloudflare Workers](https://rains-digital-space.1785114661.workers.dev)。Pages 通过手动部署更新，Workers 通过 GitHub 的 main 分支推送自动更新，两者需要分别确认版本。部分网络可能无法访问 Cloudflare 默认域名。
+
+## 博客介绍
+
+- **学习笔记**：数据结构、Java、Python、AI 与大语言模型，以及微积分、线性代数。
+- **城市与生活**：北京、西安、苏州的城市观察文章，以及大学学习与生活总结。
+- **项目作品集**：收录 9 个公开 GitHub 项目，覆盖算法可视化、学习管理、记录工具和小游戏，提供源码与 Demo 入口。
+- **阅读体验**：Markdown 正文、代码高亮、关键词搜索、分类与标签筛选，支持深浅主题、中文与英文界面和手机阅读。
+
+Rain's personal blog and portfolio, featuring computer science and mathematics notes, city essays, and public projects. The interface supports Chinese and English; articles keep their original language.
+
+本站使用 JavaScript + React + Vite，内容直接维护在仓库文件中，没有数据库或后台管理系统。新增文章或修改项目资料后，构建并发布即可更新网站。
 
 ## 安装、开发与验证
 
@@ -50,14 +65,14 @@ Windows 终端找不到 npm 时，重新打开安装 Node.js 后的终端，或�
 | `src/pages/` | Home、Projects、Blog、BlogDetail、NotFound |
 | `src/data/profile.js` | 头像、昵称、双语文案、按钮、联系方式、About 与时间线 |
 | `src/data/skills.js` | 技能类别和可编辑状态 |
-| `src/data/projects.js` | 项目字段与示例数据 |
+| `src/data/projects.js` | 公开项目与保留的项目构想，含中英双语资料 |
 | `src/data/posts.js` | 文章索引、元信息、Markdown 导入与阅读时间估算 |
 | `src/content/` | Markdown 正文，11 篇中文长文 |
 | `src/locales/` | zh-CN、en 公共界面翻译 |
 | `src/i18n.js` | i18next 初始化、语言偏好、双语字段回退 |
 | `src/styles/global.css` | 主题变量、排版、布局、组件样式、断点和轻量动效 |
 | `src/utils/filter.js` | 组合搜索、项目筛选与安全外链处理 |
-| `src/assets/`、`public/images/` | 本地头像和项目封面占位图 |
+| `src/assets/`、`public/images/` | 本地头像和项目封面，新增 SVG 为项目示意图 |
 | `tests/site.spec.js` | 搜索、过滤、导航、Markdown、偏好和响应式测试 |
 
 ## 路由
@@ -75,6 +90,10 @@ Windows 终端找不到 npm 时，重新打开安装 Node.js 后的终端，或�
 技能状态默认是可编辑的 `learning`（学习中），可改为 `using`（使用中），不包含虚构的熟练度百分比。
 
 添加项目：复制 `projects.js` 中的对象，填写唯一 id、双语 name/summary/description、cover、technologies、github、demo、category、status、date，并将真实项目的 sample 设为 false。分类可选 Web、Java、Python、AI、Other；date 使用 YYYY-MM-DD 或空字符串。GitHub 与 Demo 地址留空时不产生无效链接，外链仅接受 http/https。当前示例没有真实仓库或演示地址。
+
+项目目录于 2026-10-28 根据 [RainANDCr 的公开仓库](https://github.com/RainANDCr?tab=repositories)、各仓库 README 和 package.json 核对。现收录 9 个公开项目：Snake Lab、知行 StudyFlow、落叶物语、数据结构实验平台 Codex 版、平生述、DataStruct Lab、今天吃什么、2048 和本站。两个数据结构仓库分别维护，卡片名称已区分；原作品集构想已替换为本站真实仓库，另外两个构想仍保留。
+
+新增项目的 Demo 地址来自仓库 README；本地网络策略阻止了在线访问，未据此宣称已验证功能或在线状态。新增封面是本地 SVG 示意图，不是实际界面截图。没有确认的开发日期留空，未使用仓库创建时间推断。此目录是静态数据，不会自动同步 GitHub 的后续更新。
 
 ## 写博客
 
@@ -104,49 +123,58 @@ Windows 终端找不到 npm 时，重新打开安装 Node.js 后的终端，或�
 
 源文件检查没有发现硬编码 API 密钥。前端的任何 VITE_* 环境变量最终都会公开，不应保存秘密。笔记中的代码块是学习示例。
 
-## GitHub：由你确认后执行
+## 更新与部署
 
-当前文件夹尚未初始化 Git，没有配置或修改远程仓库。以下命令只作为操作指导。
+代码仓库已经公开在 [RainANDCr/rains-digital-space](https://github.com/RainANDCr/rains-digital-space)，默认分支为 `main`。修改源码后先在本地检查：
 
-1. 在 GitHub 创建一个空仓库，建议先选 Private；不要勾选初始化 README，以免产生独立历史。确认准备公开时再自行调整可见性。
-2. 在本地项目目录执行：
 ```powershell
-git init -b main
-git add .
+npm run build
+git diff --check
 git status
-git diff --cached --stat
-git commit -m "Build Rain's Digital Space"
 ```
-3. 检查暂存清单不含个人秘密、node_modules、dist、.env。将下列占位地址替换为你刚创建的仓库，再执行：
+
+确认待提交内容后，按文件选择暂存，再提交与推送：
+
 ```powershell
-git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
-git remote -v
-git push -u origin main
+git add README.md src public/images tests
+git diff --cached --stat
+git commit -m "Update blog and portfolio"
+git push origin main
 ```
-4. 通过 GitHub 登录流程完成认证，不要把访问令牌写进代码或仓库地址。
 
-参考：[GitHub 本地代码推送指南](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github)。
+`handoff.md` 是本地运维交接资料，不属于网站内容；不要使用 `git add .` 将它无意公开。`node_modules`、`dist`、本地缓存和 `.env` 已由 `.gitignore` 排除。不要提交任何认证令牌。
 
-## Cloudflare Pages：确认公开后部署
+### Cloudflare Workers：推送自动更新
 
-1. 进入 Cloudflare 控制台的 Workers & Pages，选择 Create application → Pages → Import an existing Git repository。
-2. 连接 GitHub，选择仓库和 main 分支，根目录使用仓库根目录。
-3. 构建命令填写 `npm run build`，构建输出目录填写 `dist`。设置 Node.js 版本 24（可用环境变量 NODE_VERSION=24）。
-4. 确认愿意公开站点后，再点击部署。私有 GitHub 仓库不表示 Pages 站点私有。
-5. 部署后访问 pages.dev 地址，并直接访问、刷新 `/projects`、`/blog/beijing-travel`；检查主题、语言和静态图片。
+本仓库已连接 Workers Builds。推送到 `main` 后由 Cloudflare 执行构建与部署：
 
-Cloudflare Pages 在没有顶层 `404.html` 时会按 SPA 方式回退到根入口，因此这里没有添加冲突的 catch-all 重定向或静态 404。应用内 404 通常仍返回 HTTP 200，这是纯 SPA 的限制。换到其他托管服务时需配置等价的 history fallback。
+- 构建命令：`npm run build`
+- 部署命令：`npx wrangler deploy`
+- 静态资源目录：`dist`
+- 配置文件：`wrangler.jsonc`
+- 地址：[rains-digital-space.1785114661.workers.dev](https://rains-digital-space.1785114661.workers.dev)
 
-官方说明：[React 部署](https://developers.cloudflare.com/pages/framework-guides/deploy-a-react-site/)、[SPA 路由回退](https://developers.cloudflare.com/pages/configuration/serving-pages/)。
+保留 `assets.not_found_handling: "single-page-application"`，确保博客和项目子路径可直接访问与刷新。部署完成后，在 Cloudflare 的构建和部署记录中核对提交 SHA；不要只凭本地网络超时判断网站故障。
+
+### Cloudflare Pages：手动同步网站地址
+
+README 顶部的网站地址是 [rains-digital-space.pages.dev](https://rains-digital-space.pages.dev)。该 Pages 项目使用直接上传，GitHub 推送不会自动同步它。需要发布相同版本时：
+
+```powershell
+npm run build
+npx wrangler pages deploy dist --project-name=rains-digital-space --branch=main
+```
+
+首次使用 Wrangler 时按工具提示登录。也可使用电脑上已经安装的 Wrangler CLI。不要把 OAuth 或 API Token 写进仓库。
+
+发布后检查首页、`/projects`、`/blog` 和 `/blog/beijing-travel`，确认刷新不会返回静态 404。Pages 没有顶层 `404.html` 时使用默认 SPA 回退；不要添加会破坏回退的静态 404。当前 Vite 按根路径部署，没有配置 GitHub Pages 仓库子路径。
+
+这两套部署互相独立。维护时要同时更新，或以后明确只保留一个访问入口。GitHub 用于托管源码，当前网站运行在 Cloudflare，并非 GitHub Pages。
 
 ## 自定义域名
 
-1. 进入 Pages 项目 → Custom domains → Set up a domain，先在 Pages 中关联域名。
-2. 根域名（如 example.com）需要加入同一 Cloudflare 账户，并按向导配置 Cloudflare nameservers。
-3. 子域名（如 blog.example.com）可在 DNS 服务商添加 CNAME，指向项目的 YOUR_SITE.pages.dev；按控制台实际给出的值操作。
-4. 等待 DNS 和证书生效，然后验证 HTTPS 与文章子路径刷新。不要只添加 CNAME 而跳过 Pages 域名关联。
+Pages 项目在 **Custom domains → Set up a domain** 中关联域名；根域名需要按向导配置 Cloudflare nameservers，外部 DNS 的子域名通常通过 CNAME 指向项目的 `pages.dev` 地址。先在 Pages 关联域名，再配置 DNS，等待证书生效并检查 HTTPS。
 
-参考：[Cloudflare 自定义域名](https://developers.cloudflare.com/pages/configuration/custom-domains/)。
+Workers 地址则在对应 Worker 的 **Settings → Domains & Routes** 中配置自定义域名。请按最终选定的站点入口配置，不要把同一个主机名同时指向两套独立站点。
 
-本次没有创建公开仓库、推送代码、连接云平台、修改 DNS 或发布网站。发布前请核对游记与年度总结，并将项目构想替换为真实作品。
-
+参考：[Cloudflare Workers 静态资源](https://developers.cloudflare.com/workers/static-assets/)、[Pages 自定义域名](https://developers.cloudflare.com/pages/configuration/custom-domains/)。

@@ -1,6 +1,48 @@
 export const projectCategories = ['All', 'Web', 'Java', 'Python', 'AI', 'Other']
 export const projects = [
  {
+  id: 'snake-lab', name: { 'zh-CN': 'Snake Lab 贪吃蛇实验室', en: 'Snake Lab' },
+  summary: { 'zh-CN': '集经典贪吃蛇、AI 寻路实验、本地双人对战和地图编辑器于一体的网页游戏。', en: 'A browser snake game with AI pathfinding experiments, local versus play, and a map editor.' },
+  description: { 'zh-CN': '使用 React、TypeScript 与 Canvas 实现游戏与算法展示，提供关卡挑战、每日挑战、成就统计和本地存档。AI 实验室可观察寻路过程，地图编辑器支持导入与导出。', en: 'Built with React, TypeScript, and Canvas, with level and daily challenges, achievements, and local saves. The AI lab visualizes pathfinding, while the map editor supports import and export.' },
+  cover: '/images/snake-lab-cover.svg', technologies: ['React', 'TypeScript', 'Canvas', 'Vite'], github: 'https://github.com/RainANDCr/snake-lab', demo: 'https://rainandcr.github.io/snake-lab/', category: 'Web',
+  status: { 'zh-CN': '源码已公开', en: 'Source available' }, date: '', sample: false
+ },
+ {
+  id: 'studyflow', name: { 'zh-CN': '知行 StudyFlow', en: 'StudyFlow' },
+  summary: { 'zh-CN': '本地优先的学习目标管理工具，结合每日任务、打卡、专注计时与学习周报。', en: 'A local-first study planner combining daily targets, check-ins, focus sessions, and weekly reports.' },
+  description: { 'zh-CN': '使用 React 与 TypeScript 构建，网页版通过 Dexie / IndexedDB 保存数据，Windows 版使用 Tauri 与 SQLite。支持目标管理、进度记录和 JSON 备份，网页与桌面数据通过导入导出迁移，不会自动同步。', en: 'Built with React and TypeScript. The web app stores data through Dexie / IndexedDB, while the Windows app uses Tauri and SQLite. Goals, progress tracking, and JSON backups are supported; web and desktop data migrate manually through import and export.' },
+  cover: '/images/studyflow-cover.svg', technologies: ['React', 'TypeScript', 'Dexie', 'Tauri', 'SQLite'], github: 'https://github.com/RainANDCr/studyflow', demo: 'https://rainandcr.github.io/studyflow/', category: 'Web',
+  status: { 'zh-CN': '源码已公开', en: 'Source available' }, date: '', sample: false
+ },
+ {
+  id: 'leafstory', name: { 'zh-CN': '落叶物语', en: 'LeafStory' },
+  summary: { 'zh-CN': '以树叶和故事书呈现回忆的双人日记应用，支持纪念日、心愿与时光信件。', en: 'A shared diary that turns memories into leaves and storybooks, with anniversaries, wishes, and time letters.' },
+  description: { 'zh-CN': '使用 React、TypeScript 和 Tailwind CSS，支持本地浏览器存储；配置 Supabase 后可使用云端双人同步。提供照片、地点记录、可选的自带密钥 AI 功能，以及数据导出。', en: 'Built with React, TypeScript, and Tailwind CSS, with local browser storage and optional Supabase configuration for cloud sharing. Includes photos, location memories, optional bring-your-own-key AI features, and data export.' },
+  cover: '/images/leafstory-cover.svg', technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Capacitor'], github: 'https://github.com/RainANDCr/leafstory', demo: 'https://rainandcr.github.io/leafstory/', category: 'Web',
+  status: { 'zh-CN': '源码已公开', en: 'Source available' }, date: '', sample: false
+ },
+ {
+  id: 'datastructure-codex', name: { 'zh-CN': '数据结构实验平台 · Codex 版', en: 'DataStruct Lab · Codex Edition' },
+  summary: { 'zh-CN': '将知识讲解、算法逐步动画、代码对照、练习与复习记录整合在一起的学习平台。', en: 'A learning platform combining concepts, step-by-step algorithm animations, code comparison, practice, and review records.' },
+  description: { 'zh-CN': '主界面使用 React、TypeScript 与 Vite，提供课程知识体系、算法对比、指针与内存模拟和递归调用栈等实验台。支持 C、C++、Python 教学代码对照、自定义案例与学习记录备份；代码执行和内存地址均为教学模拟。', en: 'The React, TypeScript, and Vite interface offers course concepts, algorithm comparison, pointer and memory simulations, and recursion views. Supports C, C++, and Python reference code, custom cases, and learning-record backups; code execution and memory addresses are educational simulations.' },
+  cover: '/images/datastructure-codex-cover.svg', technologies: ['React', 'TypeScript', 'Vite', 'Tailwind CSS'], github: 'https://github.com/RainANDCr/DataStructure-Lab-codex-version', demo: 'https://rainandcr.github.io/DataStructure-Lab-codex-version/', category: 'Web',
+  status: { 'zh-CN': '源码已公开', en: 'Source available' }, date: '', sample: false
+ },
+ {
+  id: 'pingshengshu', name: { 'zh-CN': '平生述', en: 'Pingshengshu · Life Memoir' },
+  summary: { 'zh-CN': '本地优先的人生回忆录工具，用时间轴、年龄书架和人物簿整理回忆。', en: 'A local-first memoir app organizing memories with timelines, age-based bookshelves, and a people journal.' },
+  description: { 'zh-CN': '以 HTML / JavaScript 网页内核提供记录、足迹、人物、碎片箱与专题合集。数据默认保存在 IndexedDB，支持导出和 WebDAV 备份；AI 润写与故事整理需自备服务商密钥，可选使用。仓库同时提供 Windows 与 Android 版本。', en: 'An HTML / JavaScript core provides memories, locations, people, fragments, and themed collections. Data is stored in IndexedDB with export and WebDAV backup. Optional AI rewriting and story organization require a user-supplied provider key. Windows and Android versions are also available in the repository.' },
+  cover: '/images/pingshengshu-cover.svg', technologies: ['JavaScript', 'HTML', 'IndexedDB', 'Electron', 'Capacitor'], github: 'https://github.com/RainANDCr/pingshengshu', demo: 'https://rainandcr.github.io/pingshengshu/', category: 'AI',
+  status: { 'zh-CN': '源码已公开', en: 'Source available' }, date: '', sample: false
+ },
+ {
+  id: 'datastruct-lab', name: { 'zh-CN': 'DataStruct Lab 算法可视化', en: 'DataStruct Lab · Algorithm Visualizer' },
+  summary: { 'zh-CN': '以真实算法状态驱动动画，覆盖排序、查找、树与图等九章数据结构内容。', en: 'Algorithm-state-driven visualizations covering nine data-structure chapters, including sorting, searching, trees, and graphs.' },
+  description: { 'zh-CN': '使用 React、TypeScript、Zustand 和 SVG，提供逐步播放、代码高亮、变量监视与自定义输入。链式结构配有 C/C++ 指针与堆内存教学视图，学习进度保存在本地。此项目与 Codex 版分别维护。', en: 'Built with React, TypeScript, Zustand, and SVG, with step playback, code highlighting, variable inspection, and custom inputs. Linked structures include educational C/C++ pointer and heap views; progress is stored locally. Maintained separately from the Codex edition.' },
+  cover: '/images/datastruct-lab-cover.svg', technologies: ['React', 'TypeScript', 'Zustand', 'SVG', 'Vite'], github: 'https://github.com/RainANDCr/datastruct-lab', demo: 'https://rainandcr.github.io/datastruct-lab/', category: 'Web',
+  status: { 'zh-CN': '源码已公开', en: 'Source available' }, date: '', sample: false
+ },
+ {
   id: 'what-to-eat-today', name: { 'zh-CN': '今天吃什么？', en: 'What To Eat Today' },
   summary: { 'zh-CN': '随机美食推荐网站：抽签、幸运大转盘、收藏与美食图鉴，含 400+ 道原神联动美食。', en: 'A random food picker with a lucky wheel, favorites, and a food encyclopedia, including 400+ Genshin Impact collab dishes.' },
   description: { 'zh-CN': 'React 19 + TypeScript + Tailwind CSS 4 构建的纯前端应用：可按时段、预算、口味与形式筛选，支持幸运大转盘、自定义食物、排除清单与 localStorage 持久化；图鉴按拼音首字母分组，附 Vitest 单元测试。已部署上线。', en: 'A pure front-end app built with React 19, TypeScript, and Tailwind CSS 4. Filter by time, budget, taste, and format; spin the lucky wheel, manage custom foods and exclusions, and persist everything with localStorage. The encyclopedia groups foods by pinyin initials, with unit tests via Vitest. Deployed live.' },
@@ -15,11 +57,11 @@ export const projects = [
   status: { 'zh-CN': '已上线', en: 'Live' }, date: '2026-10-10', sample: false
  },
  {
-  id: 'example-portfolio', name: { 'zh-CN': '个人作品集网站', en: 'Portfolio website' },
-  summary: { 'zh-CN': '展示个人介绍、技术兴趣与项目的响应式网站构想。', en: 'A responsive site concept for an introduction, interests, and projects.' },
-  description: { 'zh-CN': '可作为练习 React 组件、路由与响应式布局的项目构想；此卡片不代表已完成作品。', en: 'A project idea for practicing React components, routing, and responsive layout. This card does not represent completed work.' },
-  cover: '/images/portfolio-cover.png', technologies: ['React', 'Vite', 'CSS'], github: '', demo: '', category: 'Web',
-  status: { 'zh-CN': '项目构想', en: 'Project idea' }, date: '', sample: true
+  id: 'rains-digital-space', name: { 'zh-CN': "Rain's Digital Space 个人网站", en: "Rain's Digital Space" },
+  summary: { 'zh-CN': '展示个人资料、公开项目和 Markdown 博客的双语个人网站。', en: 'A bilingual personal website featuring a profile, public projects, and a Markdown blog.' },
+  description: { 'zh-CN': '当前网站的源码：React + Vite + JavaScript，支持深浅主题、中英文切换、项目分类、博客搜索、响应式布局与轻量粒子动效，使用 Cloudflare 托管静态资源。', en: 'The source code for this site: React, Vite, and JavaScript, featuring light/dark themes, Chinese/English UI, project filters, blog search, responsive layouts, and lightweight pointer particles, hosted on Cloudflare.' },
+  cover: '/images/portfolio-cover.png', technologies: ['React', 'JavaScript', 'Vite', 'i18next'], github: 'https://github.com/RainANDCr/rains-digital-space', demo: 'https://rains-digital-space.pages.dev', category: 'Web',
+  status: { 'zh-CN': '源码已公开', en: 'Source available' }, date: '', sample: false
  },
  {
   id: 'example-study-planner', name: { 'zh-CN': '学习计划管理器', en: 'Study planner' },

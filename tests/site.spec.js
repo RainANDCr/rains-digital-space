@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { filterPosts, filterProjects, safeExternal } from '../src/utils/filter.js'
 import { readFileSync, readdirSync } from 'node:fs'
+import { projects } from '../src/data/projects.js'
 
 test('eleven complete articles meet the length requirement', () => {
  const files = readdirSync('src/content').filter(name => name.endsWith('.md'))
@@ -42,11 +43,11 @@ test('navigation, filters, markdown and persisted preferences', async ({page}) =
  await page.getByRole('group',{name:'技术栈'}).getByRole('button',{name:'Web 开发'}).click()
  await expect(page.locator('.skills-grid .card')).toHaveCount(4)
  await page.getByRole('link',{name:'项目',exact:true}).click()
- await page.getByRole('button',{name:'AI',exact:true}).click()
+ await page.getByRole('button',{name:'Other',exact:true}).click()
  await expect(page.locator('.empty')).toBeVisible()
  await page.getByRole('button',{name:'全部',exact:true}).click()
- await expect(page.locator('.project-card')).toHaveCount(3)
- await expect(page.locator('.project-card a')).toHaveCount(0)
+ await expect(page.locator('.project-card')).toHaveCount(projects.length)
+ await expect(page.locator('.project-card a[href^="https://github.com/"]')).toHaveCount(projects.filter(p => p.github).length)
  await page.getByRole('link',{name:'博客',exact:true}).click()
  await page.getByRole('searchbox').fill('PYTHON')
  await expect(page.locator('.blog-grid .card')).toHaveCount(1)
@@ -73,6 +74,33 @@ test('navigation, filters, markdown and persisted preferences', async ({page}) =
  await page.goto('/blog/missing')
  await expect(page.getByRole('heading',{name:'Page not found'})).toBeVisible()
  expect(errors).toEqual([])
+})
+
+test('public projects have bilingual cards, local covers and working filters', async ({ page }) => {
+ expect(new Set(projects.map(p => p.id)).size).toBe(projects.length)
+ const published = projects.filter(p => !p.sample)
+ expect(new Set(published.map(p => p.github)).size).toBe(published.length)
+ await page.goto('/projects')
+ for (const project of projects) {
+  expect(readFileSync('public' + project.cover).length).toBeGreaterThan(0)
+  const card = page.locator('.project-card').filter({ has: page.getByRole('heading', { name: project.name['zh-CN'], exact: true }) })
+  await card.scrollIntoViewIfNeeded()
+  await expect(card).toBeVisible()
+  if (project.github) await expect(card.getByRole('link', { name: 'GitHub' })).toHaveAttribute('href', safeExternal(project.github))
+  if (project.demo) await expect(card.getByRole('link', { name: 'Demo' })).toHaveAttribute('href', safeExternal(project.demo))
+ }
+ await expect.poll(() => page.locator('.project-cover').evaluateAll(images => images.every(img => img.complete && img.naturalWidth > 0))).toBe(true)
+ await page.getByRole('button', { name: 'AI', exact: true }).click()
+ await expect(page.locator('.project-card')).toHaveCount(projects.filter(p => p.category === 'AI').length)
+ await expect(page.getByRole('heading', { name: '平生述', exact: true })).toBeVisible()
+ await page.getByRole('button', { name: '全部', exact: true }).click()
+ await page.getByRole('button', { name: 'English', exact: true }).click()
+ for (const project of projects) {
+  expect(project.summary.en).toBeTruthy()
+  expect(project.description.en).toBeTruthy()
+  expect(project.status.en).toBeTruthy()
+  await expect(page.getByRole('heading', { name: project.name.en, exact: true })).toBeVisible()
+ }
 })
 for (const width of [375,768,1024,1440]) {
  test('responsive themes and pages at ' + width, async ({page}) => {
