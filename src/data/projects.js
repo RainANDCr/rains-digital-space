@@ -46,14 +46,14 @@ export const projects = [
   id: 'what-to-eat-today', name: { 'zh-CN': '今天吃什么？', en: 'What To Eat Today' },
   summary: { 'zh-CN': '随机美食推荐网站：抽签、幸运大转盘、收藏与美食图鉴，含 400+ 道原神联动美食。', en: 'A random food picker with a lucky wheel, favorites, and a food encyclopedia, including 400+ Genshin Impact collab dishes.' },
   description: { 'zh-CN': 'React 19 + TypeScript + Tailwind CSS 4 构建的纯前端应用：可按时段、预算、口味与形式筛选，支持幸运大转盘、自定义食物、排除清单与 localStorage 持久化；图鉴按拼音首字母分组，附 Vitest 单元测试。已部署上线。', en: 'A pure front-end app built with React 19, TypeScript, and Tailwind CSS 4. Filter by time, budget, taste, and format; spin the lucky wheel, manage custom foods and exclusions, and persist everything with localStorage. The encyclopedia groups foods by pinyin initials, with unit tests via Vitest. Deployed live.' },
-  cover: '/images/what-to-eat-cover.png', technologies: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Vitest'], github: 'https://github.com/RainANDCr/what-to-eat-today', demo: 'https://what-to-eat-today-1gh.pages.dev', category: 'Web',
+  cover: '/images/what-to-eat-cover.svg', technologies: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Vitest'], github: 'https://github.com/RainANDCr/what-to-eat-today', demo: 'https://what-to-eat-today-1gh.pages.dev', category: 'Web',
   status: { 'zh-CN': '已上线', en: 'Live' }, date: '2026-10-14', sample: false
  },
  {
   id: 'game-2048', name: { 'zh-CN': '2048 数字游戏', en: '2048 Game' },
   summary: { 'zh-CN': '原生 HTML/CSS/JS 实现的 2048，支持键盘与触屏，附带 Windows 安装包和 Android APK。', en: 'A 2048 game in vanilla HTML/CSS/JS with keyboard and touch support, plus Windows installers and an Android APK.' },
   description: { 'zh-CN': '零依赖原生实现：方向键/WASD 与滑动操作、合并与出现动画、最高分记录，以及彩蛋复活口令机制；通过 WebView2 壳打包为 Windows 安装版/免安装版与 Android APK，支持离线游玩，已发布在 GitHub Pages。', en: 'A zero-dependency implementation: arrow keys/WASD and swipe input, merge and spawn animations, a high-score record, and a passphrase-based revive easter egg. Packaged via a WebView2 shell into Windows installers and an Android APK with offline play. Published on GitHub Pages.' },
-  cover: '/images/2048-cover.png', technologies: ['JavaScript', 'HTML', 'CSS', 'WebView2'], github: 'https://github.com/RainANDCr/2048', demo: 'https://rainandcr.github.io/2048/', category: 'Web',
+  cover: '/images/2048-cover.svg', technologies: ['JavaScript', 'HTML', 'CSS', 'WebView2'], github: 'https://github.com/RainANDCr/2048', demo: 'https://rainandcr.github.io/2048/', category: 'Web',
   status: { 'zh-CN': '已上线', en: 'Live' }, date: '2026-10-10', sample: false
  },
  {
