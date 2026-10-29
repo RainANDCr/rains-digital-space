@@ -1,0 +1,10 @@
+import {useMemo} from 'react'
+import {useTranslation} from 'react-i18next'
+import {posts} from '../data/posts'
+import {projects} from '../data/projects'
+import {archiveEvents,futureLetters} from '../data/spaces'
+import {journeys} from '../data/travel'
+import {artifacts,exhibitions,labProjectIds} from '../data/extensions'
+import {localized} from '../i18n'
+import {buildContentNodes} from '../utils/nexus'
+export function useContentNodes(){const {t,i18n}=useTranslation();return useMemo(()=>buildContentNodes({posts,projects,memories:archiveEvents,cities:journeys,letters:futureLetters,artifacts,exhibitions,labs:labProjectIds},value=>localized(value,i18n.language),t),[t,i18n.language])}

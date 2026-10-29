@@ -1,0 +1,8 @@
+import '../styles/paper-corner.css'
+import {Link,useNavigate} from 'react-router-dom'
+import {useTranslation} from 'react-i18next'
+import {tourRoutes} from '../data/extensions'
+import {usePreferences} from '../components/PreferencesProvider'
+import {Button,Card} from '../components/UI'
+import ExtensionHeading from '../components/ExtensionHeading'
+export default function Planner(){const {t}=useTranslation(),{progress,updateProgress}=usePreferences(),navigate=useNavigate();return <section className="container section"><ExtensionHeading id="planner" /><div className="nexus-results">{tourRoutes.map(route=><Card key={route.id}><h2>{t('ext.'+route.id+'Route')}</h2><p>{t('ext.minutes',{count:route.minutes})}</p><p>{t('ext.routeAudience'+route.id[0].toUpperCase()+route.id.slice(1))}</p><ol>{route.stops.map(path=><li key={path}><Link to={path}>{path}</Link></li>)}</ol><div className="actions"><Button onClick={()=>{const step=progress.tour?.id===route.id?progress.tour.step:0;updateProgress({tour:{id:route.id,step}});navigate(route.stops[step])}}>{t(progress.tour?.id===route.id?'ext.resume':'ext.start')}</Button><Button secondary className="button secondary paper-corner" aria-pressed={progress.favorites.includes(route.id)} onClick={()=>updateProgress(previous=>({favorites:previous.favorites.includes(route.id)?previous.favorites.filter(id=>id!==route.id):[...previous.favorites,route.id]}))}>{t(progress.favorites.includes(route.id)?'ext.unfavorite':'ext.favorite')}</Button></div>{progress.completedRoutes.includes(route.id)&&<p>{t('ext.routeDone')} ✓</p>}</Card>)}</div><p className="muted">{t('ext.privacyLocal')}</p></section>}

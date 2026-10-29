@@ -1,0 +1,7 @@
+.collage-decoration { position:relative; }
+.collage-decoration::before { content:""; position:absolute; top:-5px; right:12px; width:48px; height:12px; background:var(--accent); opacity:.16; transform:rotate(-7deg); pointer-events:none; z-index:1; }
+.collage-decoration[data-settling="true"]::before { animation:collage-tape calc(var(--duration)*3) var(--ease) both; }
+.collage-decoration[data-images="true"][data-settling="true"] .photo-thumb img { animation:collage-image calc(var(--duration)*2) var(--ease) both; }
+@keyframes collage-tape { from { opacity:0; transform:translateY(-12px) rotate(-15deg); } to { opacity:.16; transform:rotate(-7deg); } }
+@keyframes collage-image { from { opacity:.8; transform:translateY(5px) rotate(-.5deg); } to { opacity:1; transform:none; } }
+@media(max-width:600px) { .collage-decoration[data-settling="true"]::before { animation-duration:var(--duration); } .collage-decoration .photo-thumb img { animation:none!important; } }

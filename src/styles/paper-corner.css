@@ -1,0 +1,5 @@
+.paper-corner { position:relative; padding-right:28px; }
+.paper-corner::after { content:""; position:absolute; right:2px; top:2px; width:16px; height:16px; background:linear-gradient(135deg,transparent 48%,var(--border) 50%,var(--accent) 100%); transform:scale(.35); transform-origin:top right; opacity:.4; pointer-events:none; transition:transform var(--duration) var(--ease),opacity var(--duration) var(--ease); }
+.paper-corner:is(:hover,:focus-visible)::after { transform:scale(1); opacity:.85; }
+html:not([data-motion="full"]) .paper-corner::after { transition:none; }
+@media(hover:none) { .paper-corner::after { transform:scale(.65); transition:none; } }

@@ -1,0 +1,31 @@
+.kinetic-title { position:relative; --kinetic-duration:calc(var(--duration) * 4.5); }
+.kinetic-text { position:relative; }
+.kinetic-glyphs { position:absolute; inset:0; pointer-events:none; user-select:none; color:var(--accent); animation:kinetic-settle var(--kinetic-duration) linear both; }
+.kinetic-glyphs>span { display:inline-block; white-space:pre-wrap; animation:kinetic-ink calc(var(--duration) * 3) var(--ease) both; animation-delay:var(--glyph-delay); }
+.kinetic-title[data-kinetic-state="running"] .kinetic-text { animation:kinetic-readable var(--kinetic-duration) var(--ease) both; }
+.kinetic-title[data-kinetic-style="digital"] .kinetic-glyphs>span { position:relative; animation-name:kinetic-digital; animation-timing-function:steps(5,end); }
+.kinetic-title[data-kinetic-style="digital"] .kinetic-glyphs>span::before { content:attr(data-digit); position:absolute; inset:0; color:var(--accent); animation:kinetic-code calc(var(--duration) * 2) steps(3,end) both; animation-delay:var(--glyph-delay); }
+/* These routes use the title as their one entrance cue, replacing the generic route fade. */
+.page-enter:has(.kinetic-title) { animation:none; }
+@keyframes kinetic-ink {
+ from { opacity:0; transform:translate(var(--glyph-x),var(--glyph-y)) scale(1.12); filter:blur(3px); }
+ 45% { opacity:.75; }
+ to { opacity:0; transform:none; filter:blur(0); }
+}
+@keyframes kinetic-digital {
+ from { opacity:0; transform:translate(var(--glyph-x),var(--glyph-y)); }
+ 35% { opacity:.85; }
+ to { opacity:0; transform:none; }
+}
+@keyframes kinetic-code { from { opacity:1; } to { opacity:0; } }
+@keyframes kinetic-readable { from { opacity:.85; } to { opacity:1; } }
+@keyframes kinetic-settle { from { opacity:1; } to { opacity:1; } }
+@media (max-width:600px) {
+ .kinetic-glyphs>span { --glyph-x:0em!important; --glyph-y:.1em!important; }
+}
+@media (prefers-reduced-motion:reduce) {
+ .kinetic-glyphs { display:none; }
+ .kinetic-text { animation:none!important; }
+}
+html:not([data-motion="full"]) .kinetic-glyphs { display:none; }
+html:not([data-motion="full"]) .kinetic-text { animation:none; }

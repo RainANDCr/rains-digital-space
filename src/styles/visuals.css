@@ -1,0 +1,26 @@
+/* Concept artwork supplies atmosphere; navigation and copy remain ordinary DOM. */
+.scene-image { display:block; position:relative; width:100%; height:100%; overflow:hidden; background:linear-gradient(145deg,#273a56,#605b79 65%,#b38e70); }
+.scene-image img { display:block; width:100%; height:100%; object-fit:cover; object-position:var(--scene-position,center); }
+.scene-fallback { display:grid; place-items:center; width:100%; height:100%; color:#f5eadb; font-size:3rem; }
+.scene-image[data-state=loading] img { opacity:0; }.scene-image[data-state=ready] img { opacity:1; transition:opacity .25s ease; }
+.section-cover { position:relative; height:300px; overflow:hidden; border-radius:var(--radius); margin:0 0 36px; background:var(--surface); }
+.section-cover .scene-image { position:absolute; inset:0; }
+.art-credit { position:absolute; right:16px; bottom:12px; background:#101d35df; color:#f3f1ec; padding:4px 10px; border-radius:4px; font-size:.7rem; }
+.cover-copy { position:relative; z-index:1; padding:32px; height:100%; display:flex; flex-direction:column; justify-content:end; background:linear-gradient(90deg,#101d35e8,#101d3540); color:#f9f5ef; }
+.cover-copy h2 { color:inherit; font-size:clamp(1.7rem,3vw,2.6rem); margin:0 0 12px; }.cover-copy p { color:#e0e5ed; max-width:30em; margin:0 0 20px; }.cover-copy a { color:inherit; }
+.train-entrance { margin-top:30px; }.train-stops { display:flex; flex-wrap:wrap; gap:10px; margin:0; padding:0; width:auto; }.train-stops a { padding:9px 16px; border:1px solid #cbd9e5; border-radius:6px; background:#152440bb; font-size:.85rem; text-decoration:none; }
+.world-intro { display:grid; grid-template-columns:1fr 1.5fr; gap:48px; margin-top:64px; align-items:center; }.world-intro>.scene-image { aspect-ratio:4/5; max-height:620px; border-radius:var(--radius); }.world-intro h2 { font-size:clamp(2rem,3vw,3rem); }.world-intro p { line-height:1.9; color:var(--muted); }
+.desk-navigation { margin:64px 0; }.desk-scene { position:relative; }.desk-scene>.scene-image { aspect-ratio:4/3; border-radius:var(--radius); }.desk-hotspots a { position:absolute; transform:translate(-50%,-50%); padding:10px 16px; border:1px solid #b9ccd9; border-radius:8px; background:#14223aee; color:#faf6ed; text-decoration:none; box-shadow:0 8px 24px #070d1b40; font-size:.85rem; white-space:nowrap; }.desk-hotspots a:hover { background:#32496a; }
+.desk-hotspots { display:block; padding:0; margin:0; width:100%; }
+.explore-art { height:260px; }.portal-art { height:155px; margin:-34px -34px 24px; border-radius:var(--radius) var(--radius) 0 0; width:calc(100% + 68px); }.chapter-portal>a:has(.portal-art) { overflow:hidden; }.chapter-portal>a:has(.portal-art)>small { position:static; }.chapter-portal>a>.scene-image { font-size:inherit; }
+:root[data-mode=terminal] .prologue-art { opacity:1; filter:none; }
+:root[data-mode=terminal] .section-cover,:root[data-mode=terminal] .desk-scene { border:1px solid var(--border); border-radius:5px; }
+:root[data-mode=terminal] .chapter-portal>a { border-top:3px solid var(--accent); }
+.prologue .scene-image.prologue-art { background:#253450; }
+@media(max-width:900px) { .section-cover { height:260px; }.portal-art { height:140px; } }
+@media(max-width:600px) {
+ .section-cover { height:230px; }.cover-copy { padding:22px 20px 46px; }.cover-copy h2 { font-size:1.5rem; }.train-entrance { height:360px; }.train-stops { gap:8px; }.train-stops a { padding:8px 12px; }
+ .world-intro { grid-template-columns:1fr; gap:20px; }.world-intro>.scene-image { max-height:440px; }.desk-scene>.scene-image { aspect-ratio:4/3; }.desk-hotspots { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }.desk-hotspots a { position:static; transform:none; text-align:center; white-space:normal; min-height:44px; }.portal-art { margin:-26px -26px 24px; width:calc(100% + 52px); }.art-credit { font-size:.65rem; }
+}
+@media(prefers-reduced-motion:reduce) { .scene-image[data-state=ready] img { transition:none; } }
+@media print { .section-cover,.desk-scene>.scene-image,.world-intro>.scene-image { display:none; }.desk-hotspots a { position:static; transform:none; }.world-intro { display:block; } }

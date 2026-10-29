@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/check-public-letters.mjs && node scripts/check-extension-content.mjs && vite build && node scripts/build-pocket.mjs",
     "preview": "vite preview",
     "test": "playwright test"
   },

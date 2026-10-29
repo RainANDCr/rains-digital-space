@@ -5,4 +5,11 @@ import './i18n'
 import App from './App'
 import { ThemeProvider } from './components/ThemeProvider'
 import './styles/global.css'
-createRoot(document.getElementById('root')).render(<StrictMode><ThemeProvider><BrowserRouter><App /></BrowserRouter></ThemeProvider></StrictMode>)
+import './styles/world.css'
+import './styles/space.css'
+import './styles/interactions.css'
+import './styles/visuals.css'
+import { PreferencesProvider } from './components/PreferencesProvider'
+import {PocketProvider} from './components/PocketProvider'
+import './styles/extensions.css'
+createRoot(document.getElementById('root')).render(<StrictMode><PreferencesProvider><PocketProvider><ThemeProvider><BrowserRouter><App /></BrowserRouter></ThemeProvider></PocketProvider></PreferencesProvider></StrictMode>)

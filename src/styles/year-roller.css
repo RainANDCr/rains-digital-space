@@ -1,0 +1,8 @@
+.year-roller { display:inline-block; position:relative; padding:8px 12px; border:1px solid var(--border); border-radius:var(--radius-small); background:var(--surface); font-variant-numeric:tabular-nums; font-size:1.4rem; letter-spacing:.12em; min-width:6ch; text-align:center; }
+.year-roller[data-style="mechanical"] { font-family:var(--display); box-shadow:inset 0 1px 5px var(--glow); }
+.year-roller[data-style="digital"] { font-family:monospace; color:var(--accent); }
+.year-digits { position:absolute; inset:8px 12px; display:flex; justify-content:center; pointer-events:none; user-select:none; }
+.year-digits>span { overflow:hidden; perspective:180px; }
+.year-digits i { display:block; font:inherit; background:var(--surface); animation:year-arrive calc(var(--duration)*2) var(--ease) both; }
+.year-roller[data-style="digital"] .year-digits i { animation-timing-function:steps(5,end); }
+@keyframes year-arrive { from { transform:translateY(-100%) rotateX(65deg); opacity:0; } to { transform:none; opacity:1; } }

@@ -1,0 +1,47 @@
+/* 交互层只改变装饰与短暂反馈，核心内容不依赖动画完成。 */
+.atmosphere { transition:background 1.2s ease,opacity 1.2s ease; }
+.atmosphere::before { inset:-120px; background:repeating-linear-gradient(108deg,transparent 0 95px,var(--accent) 96px,transparent 97px 190px); opacity:.1; animation:gentle-rain 10s linear infinite; }
+.atmosphere::after { content:""; position:absolute; inset:-10%; background:radial-gradient(ellipse at 25% 20%,var(--accent) 0,transparent 36%),radial-gradient(ellipse at 75% 10%,var(--purple) 0,transparent 32%); opacity:.07; animation:cloud-drift 45s ease-in-out infinite alternate; }
+:root[data-scene=dawn] .atmosphere { background:radial-gradient(ellipse at 80% 10%,#efcf8140,transparent 45%),linear-gradient(160deg,#a8c9d322,transparent); }
+:root[data-scene=night] .atmosphere { background:radial-gradient(circle at 15% 12%,#e7edf270 0 1px,transparent 2px),radial-gradient(circle at 75% 22%,#e7edf260 0 1px,transparent 2px),radial-gradient(ellipse at top right,#8e83bb35,transparent 60%); }
+:root[data-rain=off] .atmosphere::before { display:none; animation:none; }
+:root[data-rain=medium] .atmosphere::before { background-size:110px 100%; opacity:.16; animation-duration:7s; }
+:root[data-motion=reduced] .atmosphere::after,:root[data-motion=off] .atmosphere::after,:root[data-motion=off] .atmosphere::before,:root[data-mode=terminal] .atmosphere::after,:root[data-mode=terminal] .atmosphere::before { animation:none; }
+:root[data-motion=off] .atmosphere::before,:root[data-mode=terminal] .atmosphere::before { display:none; }
+:root[data-mode=terminal][data-rain=medium][data-motion=full] .atmosphere::before { display:block;animation:gentle-rain 7s linear infinite; }
+:root[data-visibility=hidden] .atmosphere::before,:root[data-visibility=hidden] .atmosphere::after { animation-play-state:paused; }
+:root[data-motion=reduced] .page-enter { animation-name:soft-fade; }
+:root[data-motion=off] *, :root[data-motion=off] *::before, :root[data-motion=off] *::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; }
+.site-layout:has(.reading) .atmosphere,.site-layout:has(.project-archive) .atmosphere { opacity:.08; }
+.site-layout:has(.reading) .atmosphere::before,.site-layout:has(.project-archive) .atmosphere::before { animation:none; }
+.guide-welcome { display:flex; align-items:start; gap:6px; max-width:260px; background:var(--surface); border:1px solid var(--border); padding:14px; border-radius:10px; margin-bottom:10px; font-size:.78rem; color:var(--muted); }
+.guide-welcome p { margin:0; }.guide-welcome button { border:0; background:none; color:var(--text); min-width:28px; min-height:28px; font:inherit; }
+.guide-fallback { display:grid; place-items:center; width:65px; height:100px; font-size:2.4rem; color:var(--accent); }
+.site-guide[data-state=celebrating] .guide-toggle { border-color:var(--pink); }
+.site-guide[data-state=thinking] .guide-heading { color:var(--accent); }
+.parallax-scene { position:absolute; inset:0; z-index:-3; overflow:hidden; pointer-events:none; }
+.parallax-scene .prologue-art { z-index:0; top:-30px; height:calc(100% + 60px); transform:translate3d(0,var(--far-y,0px),0); }
+.parallax-horizon { position:absolute; inset:40% -5% 0; background:linear-gradient(180deg,transparent 65%,#1b355c33); transform:translate3d(0,var(--middle-y,0px),0); pointer-events:none; }
+.parallax-near { position:absolute; inset:0; transform:translate3d(var(--star-x,0px),calc(var(--near-y,0px) + var(--star-y,0px)),0); pointer-events:none; color:#dfe9f1; opacity:.45; }
+.parallax-near span { position:absolute; font-size:1.3rem; }.parallax-near span:nth-child(1) { top:14%;right:23%; }.parallax-near span:nth-child(2) { top:23%;right:40%; }.parallax-near span:nth-child(3) { top:60%;right:8%;font-size:.8rem; }
+.future-collection .button.secondary { color:var(--paper-text); border-color:#9b9a9a; }
+.future-collection select { color:var(--paper-text); background:var(--paper); border-color:#9b9a9a; }
+.future-collection .archive-filters>label { color:var(--paper-muted); }
+.future-collection .notice { color:var(--paper-text); background:#dcd6cf; border-color:#727a90; }
+.future-envelope { padding:24px 0; border-top:1px solid #aaa9a5; margin-top:24px; }
+.future-envelope small { color:inherit; opacity:.8; }.letter-dates { display:flex; gap:8px 24px; flex-wrap:wrap; font-size:.8rem; }
+.future-body { white-space:pre-line; line-height:1.95; animation:soft-fade .2s ease both; }
+.future-envelope.is-locked { background:repeating-linear-gradient(45deg,transparent 0 8px,#77777708 8px 9px); }
+:root[data-mode=terminal] .future-collection select,:root[data-mode=terminal] .future-collection .button.secondary { background:var(--surface);color:var(--text);border-color:var(--border); }
+:root[data-mode=terminal] .future-collection .archive-filters>label { color:var(--muted); }
+:root[data-mode=terminal] body { font-family:Consolas,"Cascadia Code","Microsoft YaHei",monospace; }
+:root[data-mode=terminal] .atmosphere { background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:48px 48px;opacity:.15; }
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+ :root[data-motion=full] .living-card,:root[data-motion=full] .project-card.living-card:hover { transform:perspective(1200px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg)) translateY(-2px); transition:transform .15s ease,border-color .2s; }
+ .living-card { background-image:radial-gradient(circle at var(--light-x,50%) var(--light-y,50%),var(--glow),transparent 65%); }
+}
+@media(max-width:900px) { .parallax-near { display:none; }.parallax-scene .prologue-art { top:0;height:100%;transform:none; } }
+@media(prefers-reduced-motion:reduce) { .atmosphere::before,.atmosphere::after { animation:none!important; }.parallax-scene .prologue-art,.parallax-near,.parallax-horizon { transform:none; } }
+@keyframes gentle-rain { from{transform:translate3d(0,-60px,0)}to{transform:translate3d(-20px,60px,0)} }
+@keyframes cloud-drift { from{transform:translate3d(-2%,0,0);opacity:.04}to{transform:translate3d(2%,1%,0);opacity:.09} }
+@keyframes soft-fade { from{opacity:0}to{opacity:1} }

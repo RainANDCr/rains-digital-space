@@ -1,0 +1,152 @@
+{
+  "world-transition": {
+    "source": "01-dual-worlds.png",
+    "variants": [
+      {
+        "src": "/images/worlds/world-transition-720.webp",
+        "width": 720,
+        "height": 405
+      },
+      {
+        "src": "/images/worlds/world-transition-1440.webp",
+        "width": 1440,
+        "height": 810
+      }
+    ]
+  },
+  "hero-poetic": {
+    "source": "02-poetic-hero.png",
+    "variants": [
+      {
+        "src": "/images/worlds/hero-poetic-720.webp",
+        "width": 720,
+        "height": 405
+      },
+      {
+        "src": "/images/worlds/hero-poetic-1440.webp",
+        "width": 1440,
+        "height": 810
+      }
+    ]
+  },
+  "hero-digital": {
+    "source": "03-digital-hero.png",
+    "variants": [
+      {
+        "src": "/images/worlds/hero-digital-720.webp",
+        "width": 720,
+        "height": 405
+      },
+      {
+        "src": "/images/worlds/hero-digital-1440.webp",
+        "width": 1440,
+        "height": 810
+      }
+    ]
+  },
+  "world-poster": {
+    "source": "04-world-poster.png",
+    "variants": [
+      {
+        "src": "/images/worlds/world-poster-720.webp",
+        "width": 720,
+        "height": 900
+      },
+      {
+        "src": "/images/worlds/world-poster-1122.webp",
+        "width": 1122,
+        "height": 1402
+      }
+    ]
+  },
+  "cover-memory-express": {
+    "source": "05-memory-express.png",
+    "variants": [
+      {
+        "src": "/images/worlds/cover-memory-express-720.webp",
+        "width": 720,
+        "height": 540
+      },
+      {
+        "src": "/images/worlds/cover-memory-express-1440.webp",
+        "width": 1440,
+        "height": 1080
+      }
+    ]
+  },
+  "cover-little-desk": {
+    "source": "06-little-desk.png",
+    "variants": [
+      {
+        "src": "/images/worlds/cover-little-desk-720.webp",
+        "width": 720,
+        "height": 540
+      },
+      {
+        "src": "/images/worlds/cover-little-desk-1440.webp",
+        "width": 1440,
+        "height": 1080
+      }
+    ]
+  },
+  "cover-rainos": {
+    "source": "07-rain-os.png",
+    "variants": [
+      {
+        "src": "/images/worlds/cover-rainos-720.webp",
+        "width": 720,
+        "height": 540
+      },
+      {
+        "src": "/images/worlds/cover-rainos-1440.webp",
+        "width": 1440,
+        "height": 1080
+      }
+    ]
+  },
+  "cover-constellation": {
+    "source": "08-memory-constellation.png",
+    "variants": [
+      {
+        "src": "/images/worlds/cover-constellation-720.webp",
+        "width": 720,
+        "height": 540
+      },
+      {
+        "src": "/images/worlds/cover-constellation-1440.webp",
+        "width": 1440,
+        "height": 1080
+      }
+    ]
+  },
+  "cover-film-darkroom": {
+    "source": "09-film-darkroom.png",
+    "variants": [
+      {
+        "src": "/images/worlds/cover-film-darkroom-720.webp",
+        "width": 720,
+        "height": 540
+      },
+      {
+        "src": "/images/worlds/cover-film-darkroom-1440.webp",
+        "width": 1440,
+        "height": 1080
+      }
+    ]
+  },
+  "cover-rain-post-office": {
+    "source": "10-rain-post-office.png",
+    "variants": [
+      {
+        "src": "/images/worlds/cover-rain-post-office-720.webp",
+        "width": 720,
+        "height": 540
+      },
+      {
+        "src": "/images/worlds/cover-rain-post-office-1440.webp",
+        "width": 1440,
+        "height": 1080
+      }
+    ]
+  }
+}

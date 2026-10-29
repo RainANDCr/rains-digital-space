@@ -60,6 +60,17 @@ export const projects = [
   id: 'rains-digital-space', name: { 'zh-CN': "Rain's Digital Space 个人网站", en: "Rain's Digital Space" },
   summary: { 'zh-CN': '展示个人资料、公开项目和 Markdown 博客的双语个人网站。', en: 'A bilingual personal website featuring a profile, public projects, and a Markdown blog.' },
   description: { 'zh-CN': '当前网站的源码：React + Vite + JavaScript，支持深浅主题、中英文切换、项目分类、博客搜索、响应式布局与轻量粒子动效，使用 Cloudflare 托管静态资源。', en: 'The source code for this site: React, Vite, and JavaScript, featuring light/dark themes, Chinese/English UI, project filters, blog search, responsive layouts, and lightweight pointer particles, hosted on Cloudflare.' },
+  archive: {
+   story: { 'zh-CN': '将作品与学习记录放进同一个可维护的个人空间，并逐步用章节、插画和文章串起内容。保留可直接访问的链接，让视觉改版与内容维护互不牵制。', en: 'Bring projects and learning notes into one maintainable personal space, connected through chapters, illustrations, and writing. Stable links keep visual changes independent of content maintenance.' },
+   features: [
+    { 'zh-CN': 'React Router 管理首页、项目与博客的静态站路由，支持直接访问详情。', en: 'React Router connects the home page, projects, and blog with directly accessible detail URLs.' },
+    { 'zh-CN': '通过 i18next 与 CSS 变量提供中英文界面、深浅主题及本地偏好保存。', en: 'i18next and CSS variables provide bilingual UI, light/dark themes, and saved local preferences.' },
+    { 'zh-CN': 'Markdown 正文禁用原始 HTML，支持表格、代码高亮与文章组合筛选。', en: 'Markdown disables raw HTML and supports tables, code highlighting, and combined article filters.' },
+    { 'zh-CN': '项目使用独立数据文件；所有页面共享响应式布局、键盘焦点与减少动态效果设置。', en: 'Projects live in a dedicated data file; pages share responsive layouts, keyboard focus, and reduced-motion support.' }
+   ],
+   log: [{ date: '2026-10-28', text: { 'zh-CN': '在本地增量改造雨与星空设计系统、序章首页和章节入口；新增项目搜索、视图切换与档案详情。此记录描述本地开发，不代表已发布到生产环境。', en: 'Locally introduced the rain-and-starlight design system, prologue, and chapter links, followed by project search, view switching, and detail archives. This is a local development record, not a production release.' } }],
+   next: { 'zh-CN': '计划按开发手册分阶段完善旅行、摄影与内容关联。真实足迹、设备和个人影像待本人补充确认；这些功能尚未实施。', en: 'The staged roadmap includes travel, photography, and related content. Real locations, hardware, and personal photos still require owner confirmation; these features are not implemented yet.' }
+  },
   cover: '/images/portfolio-cover.png', technologies: ['React', 'JavaScript', 'Vite', 'i18next'], github: 'https://github.com/RainANDCr/rains-digital-space', demo: 'https://rains-digital-space.pages.dev', category: 'Web',
   status: { 'zh-CN': '源码已公开', en: 'Source available' }, date: '', sample: false
  },

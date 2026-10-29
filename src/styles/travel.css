@@ -1,0 +1,68 @@
+.travel-heading { display:flex; justify-content:space-between; gap:28px; align-items:center; }
+.travel-heading h1 { font-size:clamp(2.5rem,6vw,4.7rem); }
+.travel-heading .section-description { max-width:680px; }
+.travel-compass { color:var(--purple); font-size:6rem; font-family:var(--display); margin-inline:30px; }
+.travel-toolbar { display:flex; gap:24px; align-items:center; justify-content:space-between; flex-wrap:wrap; padding-block:16px; border-block:1px solid var(--border); }
+.travel-toolbar .filters { margin:0; }
+.travel-selects { display:flex; gap:14px; align-items:end; flex-wrap:wrap; }
+.travel-selects label { display:flex; flex-direction:column; font-size:.75rem; color:var(--muted); gap:5px; }
+.travel-selects select { min-width:95px; font-size:.9rem; }
+.travel-count { font-size:.8rem; }
+.travel-atlas { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin:24px 0 40px; }
+.atlas-canvas { position:relative; width:100%; aspect-ratio:2/1; min-height:360px; background:radial-gradient(ellipse at 65% 35%,var(--glow),transparent 65%); overflow:hidden; }
+.atlas-canvas>svg { width:100%; height:100%; position:absolute; inset:0; color:var(--border); pointer-events:none; }
+.atlas-canvas text { font:12px sans-serif; fill:var(--muted); stroke:none; }
+.atlas-empty { position:absolute; inset:0; display:flex; justify-content:center; align-items:center; text-align:center; padding:30px; flex-direction:column; }
+.atlas-empty>span { font-size:3rem; color:var(--accent); }
+.atlas-empty h2 { font-size:clamp(1.5rem,3vw,2.3rem); margin:10px 0; }
+.atlas-empty p { max-width:450px; font-size:.9rem; color:var(--muted); margin:12px 0 24px; }
+.atlas-caption { margin:0; border-top:1px solid var(--border); padding:14px 22px; font-size:.75rem; color:var(--muted); }
+.atlas-pin { position:absolute; transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; justify-content:center; min-width:44px; min-height:44px; padding:7px; border:0; color:var(--accent); background:var(--bg); border-radius:8px; font:inherit; cursor:pointer; box-shadow:var(--shadow); }
+.atlas-pin>span:last-child { font-size:.75rem; max-width:120px; overflow-wrap:anywhere; }
+.atlas-pin[aria-pressed=true] { background:var(--accent-strong); color:white; }
+.travel-empty { text-align:center; padding:65px 24px; background:var(--surface); border:1px dashed var(--border); border-radius:var(--radius); margin:24px 0 40px; }
+.travel-empty>span { font-size:3rem; color:var(--accent); }
+.travel-empty p { color:var(--muted); max-width:480px; margin:auto; }
+.travel-content { display:grid; grid-template-columns:280px minmax(0,1fr); gap:30px; margin-top:32px; align-items:start; }
+.journey-list { display:flex; flex-direction:column; gap:12px; }
+.journey-list button { display:flex; flex-direction:column; text-align:left; gap:8px; color:var(--text); background:var(--surface); border:1px solid var(--border); padding:20px; border-radius:var(--radius-small); font:inherit; }
+.journey-list button[aria-pressed=true] { border-color:var(--accent); background:var(--surface-hover); }
+.journey-list strong { font-family:var(--display); font-size:1.3rem; font-weight:500; }
+.journey-list span { color:var(--muted); font-size:.85rem; }
+.journey-postcard { background:var(--surface); border:1px solid var(--border); padding:36px; border-radius:var(--radius-small); min-width:0; box-shadow:var(--shadow); }
+.journey-postcard>p { white-space:pre-line; }
+.journey-postcard h2 { font-size:2rem; }
+.travel-writing { margin-top:80px; border-top:1px solid var(--border); padding-top:60px; }
+.travel-gallery { border-top:1px solid var(--border); padding-top:20px; margin-top:30px; }
+.photo-strip { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+.photo-thumb { font:inherit; text-align:left; padding:8px; border:1px solid var(--border); background:var(--bg); color:var(--muted); border-radius:3px; min-width:0; }
+.photo-thumb img { display:block; width:100%; aspect-ratio:3/2; object-fit:contain; }
+.photo-thumb>span:last-child { display:block; font-size:.75rem; margin-top:8px; overflow-wrap:anywhere; }
+.photo-failed { display:flex; align-items:center; justify-content:center; width:100%; min-height:140px; padding:24px; font-size:.85rem; background:var(--surface-hover); color:var(--muted); }
+.photo-dialog { width:min(1040px,calc(100% - 32px)); max-height:calc(100dvh - 32px); border:1px solid var(--border); border-radius:var(--radius-small); background:var(--bg); color:var(--text); padding:24px; box-shadow:var(--shadow); }
+.photo-dialog::backdrop { background:rgba(7,13,27,.86); }
+.photo-dialog-toolbar { display:flex; justify-content:space-between; gap:20px; align-items:center; margin-bottom:20px; }
+.photo-dialog-toolbar h2 { font-size:1rem; margin:0; }
+.photo-dialog-toolbar button { font-size:1.6rem; }
+.photo-dialog figure { margin:0; }
+.photo-dialog figure img { display:block; max-height:65dvh; width:100%; object-fit:contain; }
+.photo-dialog figcaption { text-align:center; padding:16px; font-size:.85rem; color:var(--muted); }
+.photo-dialog figcaption small { display:block; margin-top:5px; }
+.photo-controls { display:flex; justify-content:space-between; gap:20px; }
+.photo-controls button:disabled { cursor:default; opacity:.5; transform:none; }
+html[data-motion="full"] .photo-dialog[open] { animation:photo-fade var(--duration) var(--ease); }
+html[data-photo-transition] .photo-dialog { animation:none; }
+html[data-photo-transition]::view-transition-old(root),html[data-photo-transition]::view-transition-new(root) { animation:none; }
+::view-transition-group(rain-photo) { animation-duration:var(--duration); animation-timing-function:var(--ease); }
+::view-transition-old(rain-photo),::view-transition-new(rain-photo) { width:100%; height:100%; object-fit:contain; }
+@keyframes photo-fade { from { opacity:0; } to { opacity:1; } }
+@media(max-width:900px) { .travel-compass { display:none; }.travel-selects { flex:1; }.travel-content { grid-template-columns:220px minmax(0,1fr); gap:20px; }.journey-postcard { padding:24px; } }
+@media(max-width:600px) {
+ .travel-toolbar { align-items:stretch; gap:18px; }.travel-toolbar .filters { width:100%; }.travel-toolbar .filters button { flex:1; }
+ .travel-selects { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); width:100%; }
+ .travel-selects select { width:100%; min-width:0; }
+ .atlas-canvas { min-height:410px; }.atlas-empty { padding:24px; }.atlas-empty h2 { font-size:1.5rem; }
+ .travel-content { grid-template-columns:1fr; }.journey-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }.journey-list button { padding:14px; }
+ .journey-postcard { padding:24px 18px; }.photo-strip { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .travel-writing { margin-top:55px; padding-top:45px; }.photo-dialog { padding:16px; }
+}

@@ -173,7 +173,51 @@ npx wrangler pages deploy dist --project-name=rains-digital-space --branch=main
 
 这两套部署互相独立。维护时要同时更新，或以后明确只保留一个访问入口。GitHub 用于托管源码，当前网站运行在 Cloudflare，并非 GitHub Pages。
 
-## 自定义域名
+## 本地改版与项目档案维护
+
+当前增量改版仅在本地预览，尚未推送或发布。首页预览：`http://127.0.0.1:4175/`；数字造物所：`/projects`；项目详情使用 `/projects/:id`，例如 `/projects/rains-digital-space`。
+
+项目仍在 `src/data/projects.js` 维护，`id` 是公开地址的一部分，已有 ID 应保持稳定。列表可搜索中英文名称、简介、描述和技术栈，并组合分类/技术筛选。网格/时间线切换、关键词和筛选保存在网址参数，返回列表时保留。
+
+基础字段保持原样；可选 `archive` 包含双语 `story`、双语条目数组 `features`、`log: [{ date, text }]`、双语 `next`。只填写已核实的信息；缺少 `archive` 的旧项目也能正常显示。`date` 留空表示没有公开日期，不应为了排序填入推测值。`sample: true` 继续表示项目构想，不表示已经完成。
+
+本批档案封面是项目介绍插画，详情页明确标注为非应用截图。后续真实截图请放在静态资源目录，并单独记录来源。
+
+检查与边界见 [第一批验收](docs/redesign/01-03-local-preview.md)、[阶段 04 计划](docs/redesign/04-plan.md) 和 [阶段 04 验收](docs/redesign/04-acceptance.md)。
+
+## 本地旅行手记
+
+新增 `/travel`，可从顶部“旅行”与首页章节进入。支持经纬度示意地图/列表、组合筛选、城市明信片与相册灯箱；原三篇游记继续作为文章阅读。当前没有经本人确认的真实足迹，地图保持空状态。
+
+真实资料在 `src/data/travel.js` 维护；请按 [旅行资料指引](docs/redesign/05-content-guide.md) 添加。前端文件没有保密能力，不要放私人资料。地图无需 API、定位服务或网络底图；测试城市只在 `tests/fixtures`，不会进入生产构建。旅行交互测试需运行 Vite 开发服务器，不能用不包含测试夹具的 dist 预览服务器。
+
+本阶段检查见 [阶段 05 验收](docs/redesign/05-acceptance.md)。本地修改未发布。
+
+## 完整本地改版（06–17）
+
+从顶部“探索章节”进入 `/explore`，新增时光档案馆 `/archive`、硬件 `/hardware`、历史 `/history`、学习 `/learning`、放映室 `/cinema`、静态信箱 `/letters`。全站搜索在 `/search`，场景/动画设置在 `/settings`；导航栏风格按钮可原地切换诗意/终端，保留当前内容与筛选。向导默认收起，点击右下角星形按钮展开。
+
+本地入口 `http://127.0.0.1:4175/`，生产构建预览 `http://127.0.0.1:4176/`。这些改版没有推送部署；上方公开网址仍是旧的已发布版本。未提供真实资料的板块显示空状态，不冒充个人经历。
+
+数据维护见 [06–15 实现与内容指引](docs/redesign/06-15-implementation.md)，实测见 [质量报告](docs/redesign/16-quality-report.md)，本地启动、发布前清单与安全回滚见 [发布手册](docs/redesign/17-release.md)。新板块集中数据在 `src/data/spaces.js`，双语界面在 `src/locales/space.js`。前端文件不是秘密存储，不要放未经允许公开的信息。增加内容时同步更新静态 sitemap。
+
+完整测试需保持 4175 开发服务器。生产专项默认跳过；运行 4176 dist 预览后，在另一个 PowerShell 终端设置 `$env:PRODUCTION_QA='1'` 并运行 `npm.cmd test -- quality.spec.js`。检查不自动发送邮件或部署网站。
+
+## 探索扩展功能（本地）
+
+从 `/explore` 进入万象图书馆、世界之镜、旅人护照、旅程规划师、创造实验室、虚拟装机工坊、主题展览、创作幕后、物件馆与随身档案馆。体验模式在 `/settings` 切换，独立于原来的诗意/终端模式和亮暗主题。
+
+数据结构、入口、公开内容约束和验收步骤见 [扩展功能维护说明](docs/EXTENSIONS.md)。离线缓存、应用安装及更新/回滚见 [随身档案馆说明](docs/POCKET_ARCHIVE.md)。当前仍是本地改动，没有推送或部署。
+
+## 七项沉浸式交互与插画（本地）
+
+已接入十张生成插画：首页随诗意/终端模式切换主视觉，探索页提供书桌导航和世界观介绍，档案馆、影像厅与书信页使用对应封面。素材来源、缺图清单和替换步骤见 [素材指南](docs/ASSET_GUIDE.md)，实施范围见 [视觉接入计划](docs/VISUAL_IMPLEMENTATION_PLAN.md)。本轮未发布。
+
+在 `/settings` 调整晨光/昼夜、雨量、动效等级、鼠标与首页视差和向导。所有设置沿用当前浏览器偏好；没有真实天气、定位或账号同步。向导可持久隐藏；档案馆的未来信件提供两封明确标识的演示，锁定条目不附带正文。
+
+构建仍用 `npm.cmd run build`，现在会先检查公开信件，拒绝私密/未确认/无效日期以及“未到期但预先附带正文”的配置。完整配置、操作和边界见 [七项交互说明](docs/redesign/immersive-interactions.md)。本轮仍未推送或上线。
+
+## 自定义域名部署
 
 Pages 项目在 **Custom domains → Set up a domain** 中关联域名；根域名需要按向导配置 Cloudflare nameservers，外部 DNS 的子域名通常通过 CNAME 指向项目的 `pages.dev` 地址。先在 Pages 关联域名，再配置 DNS，等待证书生效并检查 HTTPS。
 

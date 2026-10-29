@@ -1,0 +1,15 @@
+.scene-still-life { position:absolute; right:3%; top:3%; width:clamp(100px,17%,180px); height:auto; pointer-events:none; color:var(--accent); }
+.still-panel { fill:var(--surface); stroke:var(--border); opacity:.94; }
+.lamp-shadow { fill:var(--text); opacity:.08; transform-origin:128px 88px; }
+html[data-motion="full"] .lamp-shadow { transition:opacity var(--duration) var(--ease),transform var(--duration) var(--ease); }
+.scene-still-life[data-light-scene="night"] .lamp-shadow,.scene-still-life[data-light-scene="dusk"] .lamp-shadow { opacity:.14; transform:scaleX(1.08); }
+.still-clock circle,.still-clock path,.still-lamp path { fill:none; stroke:currentColor; stroke-width:2; }
+.still-clock .clock-hour,.still-clock .clock-minute { transform-origin:47px 47px; }
+.scene-still-life[data-playing="true"] .clock-minute { animation:still-clock 60s linear infinite; }
+.scene-still-life[data-playing="true"] .clock-hour { animation:still-clock 720s linear infinite; }
+.still-lamp .lamp-shade { fill:var(--surface-hover); }
+.still-lamp .lamp-light { fill:var(--accent); opacity:.12; stroke:none; }
+.scene-still-life[data-playing="true"] .lamp-light { animation:still-glow 8s var(--ease) infinite alternate; }
+@keyframes still-clock { to { transform:rotate(360deg); } }
+@keyframes still-glow { to { opacity:.22; } }
+@media(max-width:600px) { .scene-still-life { width:100px; } .scene-still-life .clock-hour { animation:none!important; } }

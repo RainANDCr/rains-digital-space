@@ -1,0 +1,11 @@
+.circuit-signal { margin:12px 0; width:100%; }
+.circuit-signal svg { display:block; width:100%; height:auto; overflow:visible; }
+.circuit-signal path { fill:none; stroke:var(--border); stroke-width:2; }
+.circuit-signal rect { fill:var(--surface); stroke:var(--border); }
+.circuit-signal text { fill:var(--muted); font:11px sans-serif; }
+.circuit-signal [data-installed="true"] rect { fill:var(--surface-hover); }
+.circuit-signal [data-selected="true"] rect { stroke:var(--accent); }
+.circuit-signal .circuit-pulse { stroke:var(--accent); }
+.circuit-signal[data-running="true"] .circuit-pulse { stroke-dasharray:.15 .85; animation:circuit-signal calc(var(--duration)*4) var(--ease) both; }
+.circuit-signal figcaption { color:var(--muted); font-size:.75rem; }
+@keyframes circuit-signal { from { stroke-dashoffset:1; } to { stroke-dashoffset:0; stroke-dasharray:1 0; } }

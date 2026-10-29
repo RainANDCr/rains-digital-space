@@ -1,0 +1,5 @@
+.watercolor-bloom { position:relative; isolation:isolate; }
+.watercolor-bloom::before { content:""; position:absolute; top:5px; right:8px; width:48px; height:20px; border-radius:65% 35% 55% 45%; background:radial-gradient(ellipse at 30% 50%,var(--purple),transparent 70%),radial-gradient(ellipse at 70% 40%,var(--accent),transparent 70%); opacity:.24; pointer-events:none; z-index:-1; }
+.watercolor-bloom[data-blooming="true"][data-bloom-world="poetic"]::before { animation:watercolor-bloom calc(var(--duration)*3) var(--ease) both; }
+.watercolor-bloom[data-bloom-world="terminal"]::before { border-radius:0; background:linear-gradient(90deg,transparent,var(--accent),transparent); }
+@keyframes watercolor-bloom { from { clip-path:circle(5%); transform:scale(.3); opacity:0; } to { clip-path:circle(75%); transform:none; opacity:.24; } }

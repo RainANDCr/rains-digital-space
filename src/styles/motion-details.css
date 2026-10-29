@@ -1,0 +1,7 @@
+.wax-seal { display:inline-grid; place-items:center; width:26px; height:26px; margin-right:10px; border:2px double var(--purple); border-radius:50%; background:var(--surface-hover); color:var(--accent); font-size:.85rem; pointer-events:none; vertical-align:middle; }
+[data-seal-broken="true"] .wax-seal { opacity:0; }
+[data-details-effect="seal"]>summary { min-height:44px; padding-block:8px; }
+html[data-mode="terminal"] .wax-seal { border-radius:3px; }
+/* The seal is the only opening cue on this envelope; retain the native body immediately. */
+[data-details-effect="seal"] .future-body { animation:none; }
+[data-details-effect="seal"] .paper-corner::after { display:none; }
