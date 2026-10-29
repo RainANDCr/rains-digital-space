@@ -65,12 +65,7 @@ textarea { font:inherit; padding:16px; background:var(--bg); border:1px solid va
 .guide-content { display:flex; gap:16px; align-items:center; }.guide-content img { width:65px; height:100px; object-fit:cover; object-position:82% center; border-radius:6px; }
 .guide-content p { font-size:.85rem; color:var(--muted); min-height:100px; flex:1; }
 .guide-actions { display:flex; flex-wrap:wrap; gap:12px; }.guide-actions button,.guide-actions a { border:0; background:transparent; color:var(--accent); font:inherit; font-size:.75rem; min-height:44px; padding:5px; }
-.atmosphere { position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:0; opacity:.25; }
-.atmosphere::before { content:""; position:absolute; inset:-150px; background:repeating-linear-gradient(110deg,transparent 0 170px,var(--accent) 171px,transparent 172px 340px); opacity:.06; animation:soft-rain 24s linear infinite; }
 .site-layout>main,.site-footer { position:relative; z-index:1; }
-:root[data-scene=day] .atmosphere { background:radial-gradient(ellipse at top right,#b7dae41a,transparent 60%); }
-:root[data-scene=dusk] .atmosphere { background:radial-gradient(ellipse at top right,#e4b8a540,transparent 65%); }
-:root[data-scene=night] .atmosphere { background:radial-gradient(ellipse at top right,#8e83bb35,transparent 60%); }
 :root[data-mode=terminal] { --display:Consolas,"Cascadia Code","Microsoft YaHei",monospace; --radius:5px; --shadow:none; }
 :root[data-mode=terminal] .prologue-art { opacity:.2; filter:saturate(.3); }
 :root[data-mode=terminal] .prologue { background:#101b2b; }
@@ -79,9 +74,7 @@ textarea { font:inherit; padding:16px; background:var(--bg); border:1px solid va
 :root[data-mode=terminal] .postcard,:root[data-mode=terminal] .future-letter,:root[data-mode=terminal] .letter-preview { background:var(--surface); color:var(--text); border-color:var(--border); }
 :root[data-mode=terminal] .postcard p,:root[data-mode=terminal] .postcard small,:root[data-mode=terminal] .future-letter .muted { color:var(--muted); }
 :root[data-mode=terminal] .letter-preview .button.secondary { color:var(--text); border-color:var(--border); }
-:root[data-motion=reduced] .atmosphere::before { animation:none; display:none; }
 :root[data-motion=reduced] .pointer-particles { display:none; }
-@keyframes soft-rain { from{transform:translateY(-80px)}to{transform:translateY(80px)} }
 @media(min-width:901px) and (max-width:1150px) { .nav-shell { gap:14px; }nav { gap:14px; }.nav-actions { gap:3px; } }
 @media(max-width:900px) { .chapter-portal { grid-template-columns:repeat(2,minmax(0,1fr)); }.knowledge-map { grid-template-columns:repeat(3,minmax(0,1fr)); }.hardware-workbench { gap:24px; }.letter-desk { gap:24px; } }
 @media(max-width:600px) {
@@ -92,4 +85,3 @@ textarea { font:inherit; padding:16px; background:var(--bg); border:1px solid va
  .nav-shell { column-gap:5px; }.nav-actions { gap:0; }.settings-link { width:36px; }.nav-actions .language-button { font-size:.8rem; }
  .site-guide { bottom:12px; right:12px; }.guide-panel { width:300px; }.guide-content img { width:48px; height:85px; }
 }
-@media(prefers-reduced-motion:reduce) { .atmosphere::before { animation:none; display:none; } }

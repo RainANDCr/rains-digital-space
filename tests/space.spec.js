@@ -55,8 +55,8 @@ test('cinema display modes and media do not autoplay',async({page})=>{
 test('mode scene motion and language persist without resetting search',async({page})=>{
  await page.goto('/projects?q=react&category=Web&view=timeline');const url=page.url()
  await page.getByRole('button',{name:'界面风格: 诗意模式',exact:true}).click();await expect(page.locator('html')).toHaveAttribute('data-mode','terminal');expect(page.url()).toBe(url);await expect(page.getByRole('searchbox')).toHaveValue('react')
- await page.goto('/settings');await page.getByRole('button',{name:'黄昏',exact:true}).click();await page.getByRole('checkbox',{name:'减少背景动画'}).check();await expect(page.locator('html')).toHaveAttribute('data-scene','dusk');await expect(page.locator('.pointer-particles')).toBeHidden()
- await page.getByRole('button',{name:'English',exact:true}).click();await page.reload();await expect(page.locator('html')).toHaveAttribute('data-mode','terminal');await expect(page.locator('html')).toHaveAttribute('data-scene','dusk');await expect(page.locator('html')).toHaveAttribute('lang','en');await expect(page.getByRole('checkbox',{name:'Reduce background motion'})).toBeChecked()
+ await page.goto('/settings');await page.getByRole('checkbox',{name:'减少背景动画'}).check();expect(await page.locator('html').getAttribute('data-scene')).toBeNull();await expect(page.locator('.pointer-particles')).toBeHidden()
+ await page.getByRole('button',{name:'English',exact:true}).click();await page.reload();await expect(page.locator('html')).toHaveAttribute('data-mode','terminal');expect(await page.locator('html').getAttribute('data-scene')).toBeNull();await expect(page.locator('html')).toHaveAttribute('lang','en');await expect(page.getByRole('checkbox',{name:'Reduce background motion'})).toBeChecked()
  await page.getByRole('button',{name:'Open the rainy-night guide',exact:true}).click();await expect(page.locator('.guide-panel')).toBeVisible();await page.locator('.guide-panel').getByRole('button',{name:'Close guide'}).click();await expect(page.locator('.guide-panel')).toHaveCount(0)
 })
 

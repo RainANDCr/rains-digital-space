@@ -1,4 +1,3 @@
-export const sceneSchedule = [{hour:0,scene:'night'},{hour:5,scene:'dawn'},{hour:11,scene:'day'},{hour:17,scene:'dusk'},{hour:20,scene:'night'}]
 export const chapterRegistry = [
  {id:'home',path:'/'},
  {id:'projects',path:'/projects'},
@@ -17,4 +16,4 @@ export const guideRegistry = {
   {id:'default',priority:0,text:'guideOther',state:'idle'}
  ]
 }
-export const parallaxLayers = { far:.025,middle:.045,near:.07,maxOffset:38 }
+export const parallaxLayers = { far:.08,middle:.13,near:.18,maxOffset:28 }

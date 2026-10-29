@@ -2,7 +2,6 @@
 .still-panel { fill:var(--surface); stroke:var(--border); opacity:.94; }
 .lamp-shadow { fill:var(--text); opacity:.08; transform-origin:128px 88px; }
 html[data-motion="full"] .lamp-shadow { transition:opacity var(--duration) var(--ease),transform var(--duration) var(--ease); }
-.scene-still-life[data-light-scene="night"] .lamp-shadow,.scene-still-life[data-light-scene="dusk"] .lamp-shadow { opacity:.14; transform:scaleX(1.08); }
 .still-clock circle,.still-clock path,.still-lamp path { fill:none; stroke:currentColor; stroke-width:2; }
 .still-clock .clock-hour,.still-clock .clock-minute { transform-origin:47px 47px; }
 .scene-still-life[data-playing="true"] .clock-minute { animation:still-clock 60s linear infinite; }

@@ -1,0 +1,23 @@
+import {test,expect} from '@playwright/test'
+
+test('legacy weather is removed while desktop and mobile parallax still work',async({page})=>{
+ await page.emulateMedia({reducedMotion:'no-preference'})
+ await page.setViewportSize({width:1440,height:900})
+ await page.addInitScript(()=>{if(!localStorage.getItem('spacePreferences'))localStorage.setItem('spacePreferences',JSON.stringify({experience:'immersive',motion:'system',reduced:false,scene:'day',rain:'light'}))})
+ await page.goto('/')
+ const art=page.locator('.prologue-art')
+ await expect(art).toHaveCSS('position','absolute')
+ await expect(art).toHaveAttribute('data-state','ready')
+ await expect(page.locator('.atmosphere')).toHaveCount(0)
+ expect(await page.locator('html').getAttribute('data-scene')).toBeNull()
+ expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('spacePreferences')).rain)).toBeUndefined()
+ await page.mouse.move(1200,300)
+ await expect.poll(()=>art.evaluate(el=>getComputedStyle(el).transform)).not.toBe('matrix(1, 0, 0, 1, 0, 0)')
+ await page.setViewportSize({width:375,height:812})
+ await page.evaluate(()=>scrollTo(0,180))
+ await expect.poll(()=>art.evaluate(el=>parseFloat(el.parentElement.style.getPropertyValue('--far-y')))).toBeGreaterThan(0)
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true)
+ await page.emulateMedia({reducedMotion:'reduce'})
+ await expect.poll(()=>art.evaluate(el=>el.parentElement.style.getPropertyValue('--far-y'))).toBe('')
+ await expect(art).toHaveCSS('transform','none')
+})

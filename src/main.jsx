@@ -12,4 +12,5 @@ import './styles/visuals.css'
 import { PreferencesProvider } from './components/PreferencesProvider'
 import {PocketProvider} from './components/PocketProvider'
 import './styles/extensions.css'
+import './styles/glass.css'
 createRoot(document.getElementById('root')).render(<StrictMode><PreferencesProvider><PocketProvider><ThemeProvider><BrowserRouter><App /></BrowserRouter></ThemeProvider></PocketProvider></PreferencesProvider></StrictMode>)

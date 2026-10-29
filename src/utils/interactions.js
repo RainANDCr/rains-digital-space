@@ -1,13 +1,10 @@
-import {sceneSchedule,chapterRegistry} from '../data/interactions.js'
+import {chapterRegistry} from '../data/interactions.js'
 import {visitRoutes,tourRoutes} from '../data/extensions.js'
-export function sceneForHour(hour) {
- return [...sceneSchedule].reverse().find(entry=>hour>=entry.hour)?.scene||'night'
-}
 export function normalizePreferences(value={},lowPower=false) {
  const raw=value&&typeof value==='object'?value:{}
  const oneOf=(key,choices,fallback)=>choices.includes(raw[key])?raw[key]:fallback
  const bool=(key,fallback)=>typeof raw[key]==='boolean'?raw[key]:fallback
- return {version:2,mode:oneOf('mode',['poetic','terminal'],'poetic'),experience:oneOf('experience',['immersive','lite'],'immersive'),scene:oneOf('scene',['auto','dawn','day','dusk','night'],'auto'),reduced:bool('reduced',lowPower),motion:oneOf('motion',['system','reduced','off'],'system'),rain:oneOf('rain',['off','light','medium'],'light'),cursor:bool('cursor',true),parallax:bool('parallax',true),guideEnabled:bool('guideEnabled',true)}
+ return {version:2,mode:oneOf('mode',['poetic','terminal'],'poetic'),experience:oneOf('experience',['immersive','lite'],'immersive'),reduced:bool('reduced',lowPower),motion:oneOf('motion',['system','reduced','off'],'system'),cursor:bool('cursor',true),parallax:bool('parallax',true),guideEnabled:bool('guideEnabled',true)}
 }
 export function readStored(key,fallback) {try{return JSON.parse(localStorage.getItem(key))??fallback}catch{return fallback}}
 export function saveStored(key,value) {try{localStorage.setItem(key,JSON.stringify(value))}catch{}}

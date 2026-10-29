@@ -4,13 +4,13 @@ async function visit(page,path,preferences={}) {
  await page.addInitScript(value=>{if(!localStorage.getItem('spacePreferences'))localStorage.setItem('spacePreferences',JSON.stringify({experience:'immersive',rain:'off',cursor:false,guideEnabled:false,reduced:false,...value}))},preferences)
  await page.goto(path)
 }
-test('03 lamp shadow follows existing scene and stays attached to SVG lamp',async({page})=>{
+test('03 lamp shadow stays attached to SVG lamp without environment controls',async({page})=>{
  await visit(page,'/explore',{scene:'night'})
  const scene=page.locator('.scene-still-life'),shadow=scene.locator('.lamp-shadow')
- await expect(scene).toHaveAttribute('data-light-scene','night');await expect(shadow).toHaveCSS('opacity','0.14')
+ expect(await scene.getAttribute('data-light-scene')).toBeNull();await expect(shadow).toHaveCSS('opacity','0.08')
  await expect(shadow).toHaveCSS('animation-name','none')
- await page.goto('/settings');await page.getByRole('button',{name:'白日',exact:true}).click();await page.goto('/explore')
- await expect(scene).toHaveAttribute('data-light-scene','day');await expect(shadow).toHaveCSS('opacity','0.08')
+ await page.reload()
+ await expect(shadow).toHaveCSS('opacity','0.08')
 })
 test('12 watercolor stays on paper edge and keeps postcard preview usable',async({page})=>{
  await visit(page,'/letters')

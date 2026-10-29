@@ -6,7 +6,7 @@ import {extensionFeatures,tourRoutes} from '../src/data/extensions.js'
 import {extensionText} from '../src/locales/extensions.js'
 
 test('extension schemas preserve preferences, validate progress and filter public nodes',()=>{
- expect(normalizePreferences({mode:'terminal',experience:'lite',rain:'off'})).toMatchObject({mode:'terminal',experience:'lite',rain:'off'})
+ expect(normalizePreferences({mode:'terminal',experience:'lite',rain:'off'})).toMatchObject({mode:'terminal',experience:'lite'})
  expect(normalizePreferences({experience:'invalid'}).experience).toBe('immersive')
  const progress=normalizeProgress({tour:{id:'intro',step:999},stamps:{'/projects':'2026-10-29T00:00:00.000Z','https://evil.test':'2026-10-29T00:00:00.000Z','/lab':'invalid'},favorites:['intro','intro','fake']})
  expect(progress.tour.step).toBe(2);expect(Object.keys(progress.stamps)).toEqual(['/projects']);expect(progress.favorites).toEqual(['intro'])
@@ -24,8 +24,8 @@ test('extension schemas preserve preferences, validate progress and filter publi
 test('experience switch preserves preferences and keeps train navigation in lite mode',async({page})=>{
  await page.goto('/settings');await expect(page.locator('html')).toHaveAttribute('data-experience','lite')
  await page.getByRole('button',{name:'沉浸式',exact:true}).click();await expect(page.locator('html')).toHaveAttribute('data-experience','immersive')
- await page.getByRole('button',{name:'黄昏',exact:true}).click();await page.getByRole('button',{name:'轻量模式',exact:true}).click();await page.reload()
- await expect(page.locator('html')).toHaveAttribute('data-scene','dusk');await expect(page.locator('html')).toHaveAttribute('data-experience','lite')
+ await page.getByRole('button',{name:'轻量模式',exact:true}).click();await page.reload()
+ expect(await page.locator('html').getAttribute('data-scene')).toBeNull();await expect(page.locator('html')).toHaveAttribute('data-experience','lite')
  await page.goto('/');await expect(page.locator('.train-stops')).toBeVisible();await expect(page.locator('.atmosphere')).toBeHidden();await expect(page.locator('.page-enter')).toHaveCSS('animation-name','none')
 })
 

@@ -1,14 +1,13 @@
 import {test,expect} from '@playwright/test'
-import {normalizePreferences,normalizeProgress,sceneForHour} from '../src/utils/interactions.js'
+import {normalizePreferences,normalizeProgress} from '../src/utils/interactions.js'
 import {letterState,assertPublishableLetters} from '../src/utils/archive.js'
 import {demoLetters} from '../src/data/demoLetters.js'
 
-test('scene boundaries and legacy preferences are validated',()=>{
- for(const [hour,scene] of [[0,'night'],[4,'night'],[5,'dawn'],[10,'dawn'],[11,'day'],[16,'day'],[17,'dusk'],[19,'dusk'],[20,'night'],[23,'night']])expect(sceneForHour(hour)).toBe(scene)
+test('legacy weather preferences are discarded',()=>{
  const legacy=normalizePreferences({mode:'terminal',scene:'dusk',reduced:true})
- expect(legacy).toMatchObject({version:2,mode:'terminal',scene:'dusk',reduced:true,rain:'light'})
+ expect(legacy).toMatchObject({version:2,mode:'terminal',reduced:true})
  expect(normalizePreferences({narration:'always'})).not.toHaveProperty('narration')
- expect(normalizePreferences({scene:'bad',rain:'storm',cursor:'true',motion:'invalid'})).toMatchObject({scene:'auto',rain:'light',cursor:true,motion:'system'})
+ expect(normalizePreferences({scene:'bad',rain:'storm',cursor:'true',motion:'invalid'})).toMatchObject({cursor:true,motion:'system'})
  expect(normalizePreferences(null).guideEnabled).toBe(true)
  expect(normalizeProgress({chapters:['home','home','bad'],visited:['/travel','https://other.test'],dialogues:null})).toMatchObject({chapters:['home'],visited:['/travel'],dialogues:[]})
  expect(letterState(demoLetters[0],'2026-10-29')).toBe('unlocked');expect(letterState(demoLetters[1],'2026-10-29')).toBe('locked')
@@ -18,11 +17,9 @@ test('scene boundaries and legacy preferences are validated',()=>{
  expect(()=>assertPublishableLetters([{...demoLetters[0],visibility:'private'}],'2026-10-29')).toThrow(/private/)
 })
 
-test('weather controls persist and all motion can be disabled',async({page})=>{
- await page.goto('/settings');await page.getByRole('button',{name:'晨光',exact:true}).click();await expect(page.locator('html')).toHaveAttribute('data-scene','dawn')
- await page.getByRole('button',{name:'中雨',exact:true}).click();await expect(page.locator('html')).toHaveAttribute('data-rain','medium')
+test('removed weather controls stay absent and motion preferences persist',async({page})=>{
+ await page.goto('/settings');await expect(page.getByRole('heading',{name:'环境场景',exact:true})).toHaveCount(0);await expect(page.getByRole('heading',{name:'雨幕强度',exact:true})).toHaveCount(0)
  await page.getByRole('button',{name:'关闭动画',exact:true}).click();await expect(page.locator('html')).toHaveAttribute('data-motion','off');await page.reload();await expect(page.locator('html')).toHaveAttribute('data-motion','off')
- await page.getByRole('group',{name:'雨幕强度'}).getByRole('button',{name:'关闭',exact:true}).click();await expect(page.locator('html')).toHaveAttribute('data-rain','off')
  await page.goto('/');await expect(page.locator('.prologue-art')).toBeVisible();await expect(page.locator('.page-enter')).toHaveCSS('animation-name','none');await expect(page.locator('.typewriter')).toHaveText('Computer Science Student|')
 })
 
@@ -31,7 +28,7 @@ test('chapter narration stays removed with legacy preferences and navigation',as
  for(const path of ['/','/projects','/settings']){await page.goto(path);await expect(page.locator('h1')).toBeVisible();await expect(page.locator('.chapter-narration')).toHaveCount(0)}
  await expect(page.getByRole('heading',{name:'章节旁白'})).toHaveCount(0)
  await expect(page.getByRole('checkbox',{name:'显示雨夜向导'})).toBeVisible()
- await expect(page.locator('html')).toHaveAttribute('data-scene','dusk');await expect(page.locator('html')).toHaveAttribute('data-rain','off')
+ expect(await page.locator('html').getAttribute('data-scene')).toBeNull();expect(await page.locator('html').getAttribute('data-rain')).toBeNull()
  await page.reload();await expect(page.locator('h1')).toBeVisible();await expect(page.locator('.chapter-narration')).toHaveCount(0)
  await page.goBack();await expect(page.locator('.project-card')).toHaveCount(11);await expect(page.locator('.chapter-narration')).toHaveCount(0)
 })
@@ -66,7 +63,7 @@ test('fine pointer tilt and home parallax reset when disabled',async({page})=>{
 
 test('unavailable localStorage does not block navigation or settings',async({page})=>{
  await page.addInitScript(()=>{Storage.prototype.getItem=()=>{throw new DOMException('blocked','SecurityError')};Storage.prototype.setItem=()=>{throw new DOMException('blocked','QuotaExceededError')}})
- await page.goto('/settings');await expect(page.locator('h1')).toBeVisible();await page.getByRole('button',{name:'晨光',exact:true}).click();await expect(page.locator('html')).toHaveAttribute('data-scene','dawn');await page.goto('/projects');await expect(page.locator('.project-card')).toHaveCount(11)
+ await page.goto('/settings');await expect(page.locator('h1')).toBeVisible();await page.getByRole('checkbox',{name:'首页多层视差'}).uncheck();await page.goto('/projects');await expect(page.locator('.project-card')).toHaveCount(11)
 })
 
 test('terminal English layout stays readable on a narrow screen',async({page})=>{

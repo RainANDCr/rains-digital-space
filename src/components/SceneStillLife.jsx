@@ -1,11 +1,9 @@
 import {useVisibleMotion} from '../hooks/useVisibleMotion'
-import {usePreferences} from './PreferencesProvider'
 import '../styles/still-life.css'
 
 export default function SceneStillLife({shadows=true}) {
  const [ref,playing]=useVisibleMotion()
- const {currentScene}=usePreferences()
- return <svg ref={ref} className="scene-still-life" data-playing={playing} data-light-scene={currentScene} viewBox="0 0 180 100" aria-hidden="true">
+ return <svg ref={ref} className="scene-still-life" data-playing={playing} viewBox="0 0 180 100" aria-hidden="true">
   <rect x="1" y="1" width="178" height="98" rx="12" className="still-panel"/>
   <g className="still-clock"><circle cx="47" cy="47" r="30"/><circle cx="47" cy="47" r="25"/>
    <path className="clock-hour" d="M47 47L47 32"/><path className="clock-minute" d="M47 47L66 47"/><circle cx="47" cy="47" r="2"/>

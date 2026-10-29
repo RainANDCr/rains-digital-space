@@ -17,6 +17,7 @@
 :root[data-mode=terminal] .section-cover,:root[data-mode=terminal] .desk-scene { border:1px solid var(--border); border-radius:5px; }
 :root[data-mode=terminal] .chapter-portal>a { border-top:3px solid var(--accent); }
 .prologue .scene-image.prologue-art { background:#253450; }
+.parallax-scene .scene-image.prologue-art { position:absolute; }
 @media(max-width:900px) { .section-cover { height:260px; }.portal-art { height:140px; } }
 @media(max-width:600px) {
  .section-cover { height:230px; }.cover-copy { padding:22px 20px 46px; }.cover-copy h2 { font-size:1.5rem; }.train-entrance { height:360px; }.train-stops { gap:8px; }.train-stops a { padding:8px 12px; }
