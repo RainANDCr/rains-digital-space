@@ -1,6 +1,38 @@
 export const projectCategories = ['All', 'Web', 'Java', 'Python', 'AI', 'Other']
 export const projects = [
  {
+  id: 'campusflow', name: {"zh-CN":"CampusFlow 智能课程表","en":"CampusFlow"},
+  cover: '/images/campusflow-cover.png',
+  summary: {"zh-CN":"跨平台课程表，覆盖 Web/PWA、Windows、Android 与 iOS。","en":"A cross-platform timetable for Web/PWA, Windows, Android and iOS."},
+  description: {"zh-CN":"课表可在多个平台使用；安装和使用方式请查阅仓库。","en":"See the repository for platform-specific setup and usage."},
+  technologies: ["TypeScript"], github: 'https://github.com/RainANDCr/campusflow', demo: '', category: 'Web',
+  status: { 'zh-CN': '仓库已公开', en: 'Public repository' }, date: '', sample: false
+ },
+ {
+  id: 'event-horizon', name: {"zh-CN":"Event Horizon 黑洞实验室","en":"Event Horizon"},
+  cover: '/images/event-horizon-cover.png',
+  summary: {"zh-CN":"以黑洞实验和深空探索为主题的项目。","en":"A black hole lab and deep space exploration project."},
+  description: {"zh-CN":"从项目仓库了解黑洞实验和深空探索的实现。","en":"See the repository for the black hole and deep space experiments."},
+  technologies: ["TypeScript"], github: 'https://github.com/RainANDCr/event-horizon', demo: '', category: 'Web',
+  status: { 'zh-CN': '仓库已公开', en: 'Public repository' }, date: '', sample: false
+ },
+ {
+  id: 'capricorn-codex-pet', name: {"zh-CN":"摩羯 Capricorn 桌宠","en":"Capricorn Codex Pet"},
+  cover: '/images/capricorn-codex-pet-cover.png',
+  summary: {"zh-CN":"包含九种动作的 Codex 桌宠。","en":"A Codex desktop pet with nine animations."},
+  description: {"zh-CN":"面向 Codex 的桌宠作品，动作与素材见公开仓库。","en":"The public repository contains the pet and its animation assets."},
+  technologies: [], github: 'https://github.com/RainANDCr/Capricorn-Codex-Pet', demo: '', category: 'Other',
+  status: { 'zh-CN': '仓库已公开', en: 'Public repository' }, date: '', sample: false
+ },
+ {
+  id: 'microcivilization-lab', name: {"zh-CN":"微观文明实验场","en":"Microcivilization Lab"},
+  cover: '/images/microcivilization-lab-cover.png',
+  summary: {"zh-CN":"确定性文明模拟，涵盖生态、聚落和历史分叉。","en":"A deterministic civilization simulator exploring ecology, settlements and branching histories."},
+  description: {"zh-CN":"可通过在线演示探索文明演化和历史分叉。","en":"Explore civilization development and historical branches in the online demo."},
+  technologies: ["TypeScript"], github: 'https://github.com/RainANDCr/microcivilization-lab', demo: 'https://rainandcr.github.io/microcivilization-lab/', category: 'Web',
+  status: { 'zh-CN': '仓库已公开', en: 'Public repository' }, date: '', sample: false
+ },
+ {
   id: 'snake-lab', name: { 'zh-CN': 'Snake Lab 贪吃蛇实验室', en: 'Snake Lab' },
   summary: { 'zh-CN': '集经典贪吃蛇、AI 寻路实验、本地双人对战和地图编辑器于一体的网页游戏。', en: 'A browser snake game with AI pathfinding experiments, local versus play, and a map editor.' },
   description: { 'zh-CN': '使用 React、TypeScript 与 Canvas 实现游戏与算法展示，提供关卡挑战、每日挑战、成就统计和本地存档。AI 实验室可观察寻路过程，地图编辑器支持导入与导出。', en: 'Built with React, TypeScript, and Canvas, with level and daily challenges, achievements, and local saves. The AI lab visualizes pathfinding, while the map editor supports import and export.' },
